@@ -8,13 +8,13 @@
 
 ### User
 - **ID** - UUID
-- **Avatar** - string # src
-- **Name** - char[42]
-- **Surname** - char[42]
-- **Roles** - byte[] # Enum Role
-- **Chats** - UUID[]
-- **ChatTyping** - UUID
-- **LastActivity** - DateTime
+- **avatar** - string # src
+- **name** - char[42]
+- **surname** - char[42]
+- **roles** - byte[] # Enum Role
+- **chats** - UUID[]
+- **chatTyping** - UUID
+- **lastActivity** - DateTime
 
 #### Role
 - **Customer** = 0
@@ -24,60 +24,60 @@
 
 ### Chat
 - **ID** - UUID
-- **Title** - chars[64]
-- **Users** - UUID[]
-- **Messages** - UUID[]
+- **title** - chars[64]
+- **users** - UUID[]
+- **messages** - UUID[]
 
 
 ### Message
 - **ID** - UUID
-- **Content** - chars[1024]
-- **Date** - DateTime # Server time
-- **ReadBy** - UUID[] # Users
-- **RepliedFrom** - UUID[] # Messages
-- **Attachments** - UUID[]
-- **Edited** - bool
-- **Deleted** - bool
+- **content** - chars[1024]
+- **date** - DateTime # Server time
+- **readBy** - UUID[] # Users
+- **repliedFrom** - UUID[] # Messages
+- **attachments** - UUID[]
+- **edited** - bool
+- **deleted** - bool
 
 
 ### Attachment
 - **ID** - UUID
-- **Type** - byte # enum AttachmentType
-- **Name** - chars[64]
-- **Src** - string
+- **type** - byte # enum AttachmentType
+- **name** - chars[64]
+- **src** - string
 
 #### AttachmentType
 - **Image** = 1
 
 
 ### UserConnection
-- **Сonnection** - default connection object
-- **User** - UUID
-- **Chat** - UUID
-- **MessagesCount** - int # Количество сообщений, которое пользователь видит
+- **connection** - default connection object
+- **user** - UUID
+- **chat** - UUID
+- **messagesCount** - int # Количество сообщений, которое пользователь видит
 
 
 # Events:
 
 ## Client:
 - GetChat()
-- GetMessages(int Offset, int Count)
-- SendMessage(string Text, UUID[] RepliedFrom, < Name, Src >[] Attachments)
-- DeleteMessage(UUID[] Messages)
-- EditMessage(UUID Message, string Text, < Name, Src >[] Attachmens, UUID[] RepliedFrom)
+- GetMessages(int offset, int count)
+- SendMessage(string text, UUID[] repliedFrom, < name, src >[] attachments)
+- DeleteMessage(UUID[] messages)
+- EditMessage(UUID message, string text, < name, src >[] attachmens, UUID[] repliedFrom)
 
 ## Server:
-- UpdateChat(Chat Chat)
-- UpdateMessages(Message[] Messages)
-- UpdateUsers(< bool Online, string Name, string Surname, bool Typing >[])
+- UpdateChat(Chat chat)
+- UpdateMessages(Message[] messages)
+- UpdateUsers(< bool online, string name, string surname, bool typing >[])
 
 
 # Controller:
-- Connect(UserConnection Connection)
-- Disconnect(UserConnection Connection)
-- AddMessage(string Text, UUID[] RepliedFrom, Attachment[] Attachments, UUID User, UUID Chat)
-- EditMessage(UUID Message, string Text, < Name, Src, Type >[] Attachments, UUID[] RepliedFrom, UUID User, UUID Chat)
-- DeleteMessages(UUID[] Messages, UUID User, UUID Chat)
-- GetChat(UUID User, UUID Chat)
-- GetMessages(int Offset, int Count, UUID User, UUID Chat)
-- typing(bool IsTyping, UUID User, UUID Chat)
+- Connect(UserConnection connection)
+- Disconnect(UserConnection connection)
+- AddMessage(string text, UUID[] repliedFrom, Attachment[] attachments, UUID user, UUID chat)
+- EditMessage(UUID message, string text, < name, src, type >[] attachments, UUID[] repliedFrom, UUID user, UUID chat)
+- DeleteMessages(UUID[] messages, UUID user, UUID chat)
+- GetChat(UUID user, UUID chat)
+- GetMessages(int offset, int count, UUID user, UUID chat)
+- typing(bool isTyping, UUID user, UUID chat)
