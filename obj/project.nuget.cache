@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "/wZa03Y+XkibdiTMNChRwWwm3yYUAQMaYoECMjO2kYFp89Y0PYhFAZqUHZR4zCfaD31D26cFKaVqjUBJSaRhYw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Сhat\\Сhat.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\5.0.6\\microsoft.aspnetcore.spaservices.extensions.5.0.6.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\5.0.0\\microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\5.0.0\\microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
