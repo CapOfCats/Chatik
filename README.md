@@ -68,7 +68,7 @@
 
 ## Server:
 - UpdateChat(Chat chat)
-- UpdateMessages(Message[] messages)
+- UpdateMessages(Message[] messages, Attachment[] attachments)
 - UpdateUsers(< bool online, string name, string surname, bool typing >[])
 
 
