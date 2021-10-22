@@ -8,6 +8,7 @@
 
 ### User
 - **ID** - UUID
+- **Avatar** - string # src
 - **Name** - char[42]
 - **Surname** - char[42]
 - **Roles** - byte[] # Enum Role
