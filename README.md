@@ -38,6 +38,7 @@
 - **attachments** - UUID[]
 - **edited** - bool
 - **deleted** - bool
+- **author** - UUID # User
 
 
 ### Attachment
