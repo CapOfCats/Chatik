@@ -46,6 +46,7 @@
 - **type** - byte # enum AttachmentType
 - **name** - chars[64]
 - **src** - string
+- **thumbnail** - string
 
 #### AttachmentType
 - **Image** = 1
