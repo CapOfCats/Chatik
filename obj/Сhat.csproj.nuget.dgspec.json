@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Сhat\\Сhat.csproj": {}
+    "D:\\Дрова и утилиты\\Chatik\\Сhat.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Сhat\\Сhat.csproj": {
+    "D:\\Дрова и утилиты\\Chatik\\Сhat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Сhat\\Сhat.csproj",
+        "projectUniqueName": "D:\\Дрова и утилиты\\Chatik\\Сhat.csproj",
         "projectName": "Сhat",
-        "projectPath": "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Сhat\\Сhat.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Сhat\\obj\\",
+        "projectPath": "D:\\Дрова и утилиты\\Chatik\\Сhat.csproj",
+        "packagesPath": "C:\\Users\\CapitanCat\\.nuget\\packages\\",
+        "outputPath": "D:\\Дрова и утилиты\\Chatik\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\CapitanCat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
