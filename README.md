@@ -46,6 +46,8 @@
 - **name** - chars[64]
 - **src** - string
 - **thumbnail** - string
+- **width** - number
+- **height** - number
 
 #### AttachmentType
 - **Image** = 1
