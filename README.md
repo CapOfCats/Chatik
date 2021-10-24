@@ -71,7 +71,7 @@
 
 ## Server:
 - UpdateChat(Chat chat)
-- UpdateMessages(Message[] messages, Attachment[] attachments)
+- UpdateMessages(< ...Message, bool hide >[] messages, Attachment[] attachments) # Add hide field for repliedFrom messages that does not included in observable chat
 - UpdateUsers(< UUID ID, string name, string surname, bool typing, bool online, string avatar, byte[] roles >[] users)
 
 
