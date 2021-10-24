@@ -6,11 +6,11 @@ namespace Nabrosok
 {
     class Chat
     {
-        int ID;//идентификатор чата
+        string ID;//идентификатор чата
         string title;//название
-        int[] users;//айдишники обитателей
-        int[] messages;//список сообщений
-        public Chat(int id,string tit,int[]uss,int[]mess)
+        string[] users;//айдишники обитателей
+        string[] messages;//список сообщений
+        public Chat(string id,string tit,string[]uss,string[]mess)
         {
             this.ID=id;           
             this.title = tit;

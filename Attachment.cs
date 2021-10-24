@@ -6,12 +6,12 @@ namespace Nabrosok
 {
     class Attachment
     {
-        int ID;//Айди вложения
+        string ID;//Айди вложения
         byte type;//Тип(см.енум)++
         string name;//Название
         string src;//каво бля?
         string thumbnail;//айди миниатюры
-        public Attachment(int id,byte typ,string nam, string sRc, string thumb)
+        public Attachment(string id,byte typ,string nam, string sRc, string thumb)
         {
             this.ID = id;
             this.type = typ;

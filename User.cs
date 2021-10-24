@@ -6,12 +6,12 @@ namespace Nabrosok
 {
     class User
     {
-        int ID;//Айди юзера
+        string ID;//Айди юзера
         string avatar;//Айди авы
         string name;//Имя
         string surname;//Фамилечко
         byte[] roles;//Список ролей++
-        int[] chats;//В каких чатах есть
+        string[] chats;//В каких чатах есть
         string lastActivity;//Дата-время
         enum Role// какие бывают роли
         {
@@ -20,7 +20,7 @@ namespace Nabrosok
             Support = 2,
             Admin = 10
         }
-        public User(int id,string av,string nam,string sur,byte[]rols,int[]chas,string la)// Это контруктор... прикинь?
+        public User(string id,string av,string nam,string sur,byte[]rols,string[]chas,string la)// Это контруктор... прикинь?
         {
             this.ID = id;
             this.avatar = av;

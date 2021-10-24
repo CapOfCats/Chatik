@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DyJUkbskeVu7jaTTOJYxMW8MbRAwkCF89YZoRE8Fie7IA6D9UKBVWcJQDi2T/tEPEwfUpYZWHKtdUluQbupiCA==",
+  "dgSpecHash": "dxSwZSi6/d3SXmabJd2KoO3dbsFQJwDRq1LUWWSpWBUr/SJbx/WMUsAN+TciL9IVn81qSIo9b571YA/YFq8whg==",
   "success": true,
-  "projectFilePath": "D:\\Дрова и утилиты\\Chatik\\Сhat.csproj",
+  "projectFilePath": "D:\\Дрова и утилиты\\MSVS\\Chatik\\Сhat.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CapitanCat\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\5.0.6\\microsoft.aspnetcore.spaservices.extensions.5.0.6.nupkg.sha512",
     "C:\\Users\\CapitanCat\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
