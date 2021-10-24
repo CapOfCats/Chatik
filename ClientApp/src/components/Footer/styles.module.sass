@@ -1,0 +1,92 @@
+@import ../../styles/vars
+  
+.footer
+  background-color: $dark
+  padding: 20px 15px
+  width: 100%
+  display: flex
+  position: relative
+  transition: .2s
+  &RepliedFrom
+    margin-top: 40px
+
+.repliedFrom
+  position: absolute
+  width: 100%
+  left: 0
+  top: 0
+  height: 0px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 15px
+  background-color: $white
+  overflow: hidden
+  transition: .2s
+  &Active
+    height: 40px
+    top: -40px
+  &Clear
+    background-color: transparent
+    border: none
+    font-size: 30px
+
+.textInput
+  resize: none
+  width: 100%
+  border: none
+  padding: 20px 10px
+  background-color: $white
+  border-bottom-left-radius: 5px
+
+.buttons
+  display: flex
+  align-items: center
+  background-color: $white
+  border-bottom-right-radius: 5px
+
+.button
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 40px
+  height: 40px
+  background-color: transparent
+  border: none
+  cursor: pointer
+  border-radius: 50%
+  margin-right: 10px
+  transition: .2s
+  position: relative
+  &:hover, &:focus, &:active
+    box-shadow: 0 0 15px 0 $darker
+
+.icon
+  width: 25px
+
+.badge
+  position: absolute
+  top: -5px
+  right: -5px
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 20px
+  height: 20px
+  background-color: transparentize($success, .5)
+  font-size: 10px
+  border-radius: 50%
+  color: $textColor
+  font-weight: 600
+  transition: .2s
+  &:hover, &:focus, &:active
+    background-color: $success
+  &Bottom
+    top: auto
+    bottom: -5px
+  &Error
+    background-color: transparentize($error, .5)
+    &:hover, &:focus, &:active
+      background-color: $error
+  &Close
+    font-size: 18px

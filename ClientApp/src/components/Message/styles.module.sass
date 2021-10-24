@@ -1,0 +1,102 @@
+@import ../../styles/vars
+
+.message
+  display: flex
+  align-items: center
+  position: relative
+  &My
+    justify-content: space-between
+    .textWrapper
+      background-color: $accentLight
+    .time
+      text-align: right
+  &:not(:first-child)
+    margin-bottom: 10px
+
+.messageContent
+  display: flex
+  align-items: center
+
+.textWrapper
+  background-color: $dark
+  padding: 10px
+  border-radius: 10px
+  cursor: pointer
+  max-width: 300px
+
+.checkbox
+  width: 20px
+  max-width: 0
+  height: 20px
+  transition: .2s
+  &Active
+    max-width: 20px
+    margin: 0 10px 0 0
+
+.avatar
+  width: 40px
+  height: 40px
+  border-radius: 50%
+  margin-right: 10px
+  margin-bottom: 5px
+
+.name
+  display: block
+  color: $accentDark
+  font-size: 16px
+  margin-bottom: 5px
+
+.time
+  display: inline-block
+  width: 100%
+  color: lighten($textColor, 40)
+  font-size: 14px
+
+.repliedFrom
+  background-color: $darkLight
+  border: none
+  margin-top: 10px
+  font-size: 16px
+  padding: 10px 10px
+  height: 40px
+  width: 100%
+  &::after
+    content: ''
+    border-right: 1px solid $textColor
+    border-bottom: 1px solid $textColor
+    display: inline-block
+    width: 10px
+    height: 10px
+    margin-left: 15px
+    transform: rotate(45deg)
+    margin-bottom: 4px
+    margin-right: 3px
+    transition: .2s
+  &Active
+    &::after
+      transform: rotate(-135deg)
+      margin-bottom: -3px
+  &Messages
+    width: 100%
+    background-color: darken($darkLight, 5)
+    font-size: 16px
+    max-height: 0
+    overflow: hidden
+    transition: .2s
+    padding: 0 10px
+    &Active
+      padding: 10px
+  &Message
+    &:not(:last-child)
+      margin-bottom: 5px
+    &:not(:first-of-type) > &Info
+      margin-top: 10px
+
+    &Info
+      margin: 0 0 5px 0
+    &Name
+      color: darken($accentDark, 20)
+      margin-right: 10px
+    &Time
+      color: lighten($textColor, 40)
+      font-size: 14px

@@ -1,0 +1,78 @@
+@import ../../styles/vars
+  
+.header
+  background-color: $accent
+  color: $white
+  font-size: 1.2em
+  flex-wrap: wrap
+  min-height: fit-content
+  padding: 10px 20px
+
+.row
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 10px 0
+  &Block
+    &First
+      display: flex
+      align-items: center
+
+.avatar
+  border-radius: 50%
+  width: 70px
+  height: 70px
+  object-fit: cover
+  border: 1px solid $darker
+  cursor: pointer
+  transition: .2s
+  &:hover, &:focus, &:active
+    box-shadow: 0 0 15px 0 $accentDark
+
+.title
+  margin: 15px 0 15px 20px
+
+.close
+  background-color: transparent
+  border: none
+  font-size: 40px
+  color: $white
+  display: inline-block
+  width: 40px
+  height: 40px
+  line-height: 40px
+  transition: .2s
+  border-radius: 50%
+  &:hover, &:focus, &:active
+    color: $textColor
+    background-color: $white
+
+.tools
+  justify-content: space-around
+  max-height: 0
+  overflow: hidden
+  padding: 0
+  transition: .2s
+  &Active
+    max-height: 100px
+    border-top: 1px solid $accentDark
+    padding-top: 10px
+
+.tool
+  width: 150px
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 16px
+  border-radius: 13px
+  border: none
+  padding: 5px 0
+  background-color: $darkLight
+  transition: .2s
+  font-weight: 600
+  &:hover, &:focus, &:active
+    background-color: $dark
+    box-shadow: 0 0 15px 0 $accentDark
+  img
+    width: 30px
+    margin-right: 10px
