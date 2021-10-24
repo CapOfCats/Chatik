@@ -13,7 +13,6 @@
 - **surname** - char[42]
 - **roles** - byte[] # Enum Role
 - **chats** - UUID[]
-- **chatTyping** - UUID
 - **lastActivity** - DateTime
 
 #### Role
@@ -55,6 +54,7 @@
 ### UserConnection
 - **connection** - default connection object
 - **user** - UUID
+- **typing** - UUID
 - **chat** - UUID
 - **messagesCount** - int # Количество сообщений, которое пользователь видит
 
