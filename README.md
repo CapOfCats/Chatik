@@ -65,7 +65,7 @@
 - GetChat()
 - GetMessages(int offset, int count)
 - SendMessage(string text, UUID[] repliedFrom, < name, src >[] attachments)
-- DeleteMessages(UUID[] messages)
+- DeleteMessages(UUID[] IDs)
 - EditMessage(UUID ID, string text, < name, src >[] attachmens, UUID[] repliedFrom)
 - UserTyping(bool typing)
 
