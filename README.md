@@ -67,6 +67,7 @@
 - SendMessage(string text, UUID[] repliedFrom, < name, src >[] attachments)
 - DeleteMessages(UUID[] messages)
 - EditMessage(UUID ID, string text, < name, src >[] attachmens, UUID[] repliedFrom)
+- UserTyping(bool typing)
 
 ## Server:
 - UpdateChat(Chat chat)
