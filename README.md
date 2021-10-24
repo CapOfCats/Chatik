@@ -66,7 +66,7 @@
 - GetMessages(int offset, int count)
 - SendMessage(string text, UUID[] repliedFrom, < name, src >[] attachments)
 - DeleteMessages(UUID[] messages)
-- EditMessage(UUID message, string text, < name, src >[] attachmens, UUID[] repliedFrom)
+- EditMessage(UUID ID, string text, < name, src >[] attachmens, UUID[] repliedFrom)
 
 ## Server:
 - UpdateChat(Chat chat)
