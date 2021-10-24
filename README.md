@@ -71,7 +71,7 @@
 ## Server:
 - UpdateChat(Chat chat)
 - UpdateMessages(Message[] messages, Attachment[] attachments)
-- UpdateUsers(< bool online, string name, string surname, bool typing >[])
+- UpdateUsers(< UUID ID, string name, string surname, bool typing, bool online >[])
 
 
 # Controller:
