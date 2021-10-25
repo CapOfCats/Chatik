@@ -172,11 +172,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Дрова и утилиты\\MSVS\\Chatik\\Сhat.csproj",
+      "projectUniqueName": "D:\\Дрова и утилиты\\MSVS\\ChatikBr\\Сhat.csproj",
       "projectName": "Сhat",
-      "projectPath": "D:\\Дрова и утилиты\\MSVS\\Chatik\\Сhat.csproj",
+      "projectPath": "D:\\Дрова и утилиты\\MSVS\\ChatikBr\\Сhat.csproj",
       "packagesPath": "C:\\Users\\CapitanCat\\.nuget\\packages\\",
-      "outputPath": "D:\\Дрова и утилиты\\MSVS\\Chatik\\obj\\",
+      "outputPath": "D:\\Дрова и утилиты\\MSVS\\ChatikBr\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\CapitanCat\\AppData\\Roaming\\NuGet\\NuGet.Config",

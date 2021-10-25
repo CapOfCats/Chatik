@@ -34,3 +34,14 @@ C:\Users\user\Desktop\chat\ChatServese.Contract\Сhat\obj\Debug\net5.0\Сhat.dll
 C:\Users\user\Desktop\chat\ChatServese.Contract\Сhat\obj\Debug\net5.0\ref\Сhat.dll
 C:\Users\user\Desktop\chat\ChatServese.Contract\Сhat\obj\Debug\net5.0\Сhat.pdb
 C:\Users\user\Desktop\chat\ChatServese.Contract\Сhat\obj\Debug\net5.0\Сhat.genruntimeconfig.cache
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.csprojAssemblyReference.cache
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.GeneratedMSBuildEditorConfig.editorconfig
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.AssemblyInfoInputs.cache
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.AssemblyInfo.cs
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.csproj.CoreCompileInputs.cache
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.MvcApplicationPartsAssemblyInfo.cache
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.RazorAssemblyInfo.cache
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.RazorAssemblyInfo.cs
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.dll
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\ref\Сhat.dll
+D:\Дрова и утилиты\MSVS\ChatikBr\obj\Debug\net5.0\Сhat.pdb

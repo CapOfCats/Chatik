@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebChat.Hubs;
 
-namespace Сhat
+namespace Nabrosok
 {
     public class Startup
     {
