@@ -1,88 +1,20 @@
-# Entity:
-- **User**
-- **Chat**
-- **Massage**
-- **Attachment**
-- **UserConnection**
+# Introduction 
+TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
+# Getting Started
+TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
+1.	Installation process
+2.	Software dependencies
+3.	Latest releases
+4.	API references
 
-### User
-- **ID** - UUID
-- **avatar** - string # src
-- **name** - char[42]
-- **surname** - char[42]
-- **roles** - byte[] # Enum Role
-- **chats** - UUID[]
-- **lastActivity** - DateTime
+# Build and Test
+TODO: Describe and show how to build your code and run the tests. 
 
-#### Role
-- **Customer** = 0
-- **Vendor** = 1
-- **Support** = 2
-- **Admin** = 10
+# Contribute
+TODO: Explain how other users and developers can contribute to make your code better. 
 
-### Chat
-- **ID** - UUID
-- **title** - chars[64]
-- **users** - UUID[]
-- **messages** - UUID[]
-
-
-### Message
-- **ID** - UUID
-- **content** - chars[1024]
-- **date** - DateTime # Server time
-- **readBy** - UUID[] # Users
-- **repliedFrom** - UUID[] # Messages
-- **attachments** - UUID[]
-- **edited** - bool
-- **deleted** - bool
-- **author** - UUID # User
-
-
-### Attachment
-- **ID** - UUID
-- **type** - byte # enum AttachmentType
-- **name** - chars[64]
-- **src** - string
-- **thumbnail** - string
-- **width** - number
-- **height** - number
-
-#### AttachmentType
-- **Image** = 1
-
-
-### UserConnection
-- **connection** - default connection object
-- **user** - UUID
-- **typing** - UUID
-- **chat** - UUID
-- **messagesCount** - int # Количество сообщений, которое пользователь видит
-
-
-# Events:
-
-## Client:
-- GetChat()
-- GetMessages(int offset, int count)
-- SendMessage(string text, UUID[] repliedFrom, < name, src >[] attachments)
-- DeleteMessages(UUID[] IDs)
-- EditMessage(UUID ID, string text, < name, src >[] attachmens, UUID[] repliedFrom)
-- UserTyping(bool typing)
-
-## Server:
-- UpdateChat(Chat chat)
-- UpdateMessages(< ...Message, bool hide >[] messages, Attachment[] attachments) # Add hide field for repliedFrom messages that does not included in observable chat
-- UpdateUsers(< UUID ID, string name, string surname, bool typing, bool online, string avatar, byte[] roles >[] users)
-
-
-# Controller:
-- Connect(UserConnection connection)
-- Disconnect(UserConnection connection)
-- AddMessage(string text, UUID[] repliedFrom, Attachment[] attachments, UUID user, UUID chat)
-- EditMessage(UUID message, string text, < name, src, type >[] attachments, UUID[] repliedFrom, UUID user, UUID chat)
-- DeleteMessages(UUID[] messages, UUID user, UUID chat)
-- GetChat(UUID user, UUID chat)
-- GetMessages(int offset, int count, UUID user, UUID chat)
-- typing(bool isTyping, UUID user, UUID chat)
+If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
+- [ASP.NET Core](https://github.com/aspnet/Home)
+- [Visual Studio Code](https://github.com/Microsoft/vscode)
+- [Chakra Core](https://github.com/Microsoft/ChakraCore)

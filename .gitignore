@@ -1,3 +1,9 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/VSWorkspaceState.json
 /.vs
-/obj
-/bin
+/dzhmakin.swsu.bmi/.vs/dzhmakin.swsu.bmi/v16/Server/sqlite3
+/dzhmakin.swsu.bmi/.vs/dzhmakin.swsu.bmi/v16
+/dzhmakin.swsu.bmi/dzhmakin.swsu.bmi/obj/Debug
