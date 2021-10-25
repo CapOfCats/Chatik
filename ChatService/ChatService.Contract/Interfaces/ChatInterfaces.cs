@@ -17,7 +17,7 @@ namespace СhatService.Interfaces
     public interface IMessageController
     {
         /// <summary>
-        /// Получение сообщени
+        /// Получение сообщения
         /// </summary>
         public Message[] GetMessages(int offset, int count, string user, string chat);
         /// <summary>
