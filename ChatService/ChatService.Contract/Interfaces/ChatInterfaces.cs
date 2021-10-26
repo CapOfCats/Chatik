@@ -12,6 +12,7 @@ namespace СhatService.Interfaces
         /// Получение чата
         /// </summary>
         public Chat GetChat(string user, string chat);
+       
     }
 
     public interface IMessageController
@@ -42,6 +43,6 @@ namespace СhatService.Interfaces
         /// <summary>
         /// Изменяет состояние "печатает" пользователя
         /// </summary>
-        public void SetTyping(bool isTyping);
+        public void SetTyping(bool isTyping, string user);
     }
 }

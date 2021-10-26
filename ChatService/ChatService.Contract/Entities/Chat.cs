@@ -7,6 +7,10 @@
         string[] users;
         string[] messages;
 
+        public Chat()
+        {
+        }
+
         public Chat(string ID, string title, string[] users, string[] messages)
         {
             this.ID = ID;           
