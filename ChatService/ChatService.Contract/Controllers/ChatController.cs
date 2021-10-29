@@ -6,7 +6,7 @@ namespace СhatService.Contract
     {
         public Chat GetChat(string user, string chat)
         {
-          
+            return new Chat();
         }
     }
 }

@@ -19,6 +19,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="ChatService.Contract\ClientApp\build\asset-manifest.json" />
+    <Content Remove="ChatService.Contract\ClientApp\build\manifest.json" />
+    <Content Remove="ChatService.Contract\ClientApp\package-lock.json" />
+    <Content Remove="ChatService.Contract\ClientApp\package.json" />
+    <Content Remove="ChatService.Contract\ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ChatService.Contract\ClientApp\build\asset-manifest.json" />
+    <None Include="ChatService.Contract\ClientApp\build\manifest.json" />
+    <None Include="ChatService.Contract\ClientApp\package-lock.json" />
+    <None Include="ChatService.Contract\ClientApp\package.json" />
+    <None Include="ChatService.Contract\ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.20" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.11" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="NUnit" Version="3.13.2" />
   </ItemGroup>

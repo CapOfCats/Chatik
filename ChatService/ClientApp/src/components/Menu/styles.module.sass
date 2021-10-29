@@ -1,0 +1,46 @@
+@import ../../styles/vars
+
+.wrapper
+  background-color: transparentize($textColor, .5)
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
+  bottom: 0
+  backdrop-filter: blur(2px)
+  cursor: pointer
+
+.menu
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 60%
+  background-color: $white
+  font-size: 16px
+  border-radius: 15px
+  box-shadow: 0 0 15px $darker
+  z-index: 1
+  overflow: hidden
+  cursor: default
+
+.item
+  display: flex
+  align-items: center
+  background-color: transparent
+  border: none
+  padding: 15px 25px
+  width: 100%
+  transition: .2s
+  &:hover, &:focus, &:active
+    background-color: $dark
+  &Disabled
+    &:hover, &:focus, &:active
+      background-color: transparent
+
+.icon
+  width: 25px
+  margin-right: 10px
+
+hr
+  margin: 0

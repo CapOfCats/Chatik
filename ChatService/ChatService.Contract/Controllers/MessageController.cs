@@ -11,7 +11,7 @@ namespace СhatService.Contract
     {
         public Message[] GetMessages(int offset, int count, string user, string chat)
         {
-
+            return new Message[] { new Message() };
         }
         public void AddMessage(string text, string[] repliedFrom, Attachment[] attachments, string user, string chat)
         {
