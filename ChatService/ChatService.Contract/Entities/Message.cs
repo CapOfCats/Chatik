@@ -4,37 +4,49 @@ namespace СhatService.Contract
 {
     public class Message
     {
-        string ID;
-        string content;
-        DateTime date;
-        string[] readBy;
-        string[] repliedFrom;
-        string[] attachments;
-        bool edited;
-        bool deleted;
-        string author;
+        // <summary>
+        // Идентификатор сообщения
+        // </summary>
+        public string ID;
 
-        public Message(
-            string ID,
-            string content,
-            DateTime date,
-            string[] readBy,
-            string[] repliedFrom,
-            string[] attachments,
-            bool edited,
-            bool deleted,
-            string author
-        )
-        {
-            this.ID = ID;
-            this.content = content;
-            this.date = date;
-            this.readBy = readBy;
-            this.repliedFrom = repliedFrom;
-            this.attachments = attachments;
-            this.edited = edited;
-            this.deleted = deleted;
-            this.author = author;
-        }
+        // <summary>
+        // Текст сообщения
+        // </summary>
+        public string content;
+
+        // <summary>
+        // Дата отправки сообщения
+        // </summary>
+        public DateTime date;
+
+        // <summary>
+        // Идентификаторы пользователей, прочитавших сообщение
+        // </summary>
+        public string[] readBy;
+
+        // <summary>
+        // Идентификаторы сообщений, на которые был дан ответ
+        // </summary>
+        public string[] repliedFrom;
+
+        // <summary>
+        // Идентификаторы вложений, прикрепленных к сообщению
+        // </summary>
+        public string[] attachments;
+
+        // <summary>
+        // Редактировось ли сообщение
+        // </summary>
+        public bool edited;
+
+        // <summary>
+        // Было ли сообещние удалено
+        // </summary>
+        public bool deleted;
+
+        // <summary>
+        // Идентификатор пользователя-автора сообщения
+        // </summary>
+        public string author;
     }
 }

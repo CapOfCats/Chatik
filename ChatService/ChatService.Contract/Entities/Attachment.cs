@@ -7,24 +7,39 @@
             Image = 1
         }
 
-        string ID;
-        AttachmentType type;
-        string name;
-        string src;
-        string thumbnail;
-        int width;
-        int height;
+        // <summary>
+        // Идентификатор вложения
+        // </summary>
+        public string ID;
 
-        public Attachment(string ID, AttachmentType type, string name, string src, string thumbnail, int width, int height)
-        {
-            this.ID = ID;
-            this.type = type;
-            this.name = name;
-            this.src = src;
-            this.thumbnail = thumbnail;
-            this.width = width;
-            this.height = height;
-        }
-       
+        // <summary>
+        // Тип вложения
+        // </summary>
+        public AttachmentType type;
+
+        // <summary>
+        // Название вложения
+        // </summary>
+        public string name;
+
+        // <summary>
+        // Ссылка или контент вложения
+        // </summary>
+        public string src;
+
+        // <summary>
+        // Ссылка или контент миниатюры вложения
+        // </summary>
+        public string thumbnail;
+
+        // <summary>
+        // Ширирна вложения
+        // </summary>
+        public int width;
+
+        // <summary>
+        // Высота вложения
+        // </summary>
+        public int height;
     }
 }

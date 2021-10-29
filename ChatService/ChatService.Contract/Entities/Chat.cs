@@ -2,21 +2,24 @@
 {
     public class Chat
     {
-        string ID;
-        string title;
-        string[] users;
-        string[] messages;
+        // <summary>
+        // Идентификатор чата
+        // </summary>
+        public string ID;
 
-        public Chat()
-        {
-        }
+        // <summary>
+        // Заголовок чата
+        // </summary>
+        public string title;
 
-        public Chat(string ID, string title, string[] users, string[] messages)
-        {
-            this.ID = ID;           
-            this.title = title;
-            this.users = users;
-            this.messages = messages;
-        }
+        // <summary>
+        // Идентификаторы пользоватей, входящих в чат
+        // </summary>
+        public string[] users;
+
+        // <summary>
+        // Идентификатор сообщений, входящих в чат
+        // </summary>
+        public string[] messages;
     }
 }

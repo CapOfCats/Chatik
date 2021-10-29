@@ -12,32 +12,40 @@ namespace СhatService.Contract
             Admin = 10
         }
 
-        string ID;
-        string avatar;
-        string name;
-        string surname;
-        Role[] roles;
-        string[] chats;
-        DateTime lastActivity;
+        /// <summary>
+        /// Иденификатор пользователя
+        /// </summary>
+        public string ID;
 
-        public User(
-            string ID,
-            string avatar,
-            string name,
-            string surname,
-            Role[] roles,
-            string[] chats,
-            DateTime lastActivity
-        )
-        {
-            this.ID = ID;
-            this.avatar = avatar;
-            this.name = name;
-            this.surname = surname;
-            this.roles = roles;
-            this.chats = chats;
-            this.lastActivity = lastActivity;     
-        }
+        /// <summary>
+        /// Ссылка или контент аватара пользователя
+        /// </summary>
+        public string avatar;
+
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
+        public string name;
+
+        /// <summary>
+        /// Фамилия пользователя
+        /// </summary>
+        public string surname;
+
+        /// <summary>
+        /// Роли пользователя
+        /// </summary>
+        public Role[] roles;
+
+        /// <summary>
+        /// Идентификаторы чатов, в которые входит пользователь
+        /// </summary>
+        public string[] chats;
+
+        /// <summary>
+        /// Время последней активности пользователя
+        /// </summary>
+        public DateTime lastActivity;
     }
    
 }
