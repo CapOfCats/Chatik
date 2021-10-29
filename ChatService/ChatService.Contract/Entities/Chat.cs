@@ -1,10 +1,15 @@
-﻿namespace СhatService.Contract
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
+namespace СhatService.Contract
 {
     public class Chat
     {
         // <summary>
         // Идентификатор чата
         // </summary>
+        [Key]
         public string ID;
 
         // <summary>
@@ -13,13 +18,15 @@
         public string title;
 
         // <summary>
-        // Идентификаторы пользоватей, входящих в чат
+        // Пользователи, входящие в чат
         // </summary>
-        public string[] users;
+        [ForeignKey("ID")]
+        public List<User> users;
 
         // <summary>
-        // Идентификатор сообщений, входящих в чат
+        // Сообщения, входящие в чат
         // </summary>
-        public string[] messages;
+        [ForeignKey("ID")]
+        public List<Message> messages;
     }
 }

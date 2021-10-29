@@ -13,30 +13,23 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ChatService.Contract\ClientApp\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ChatService.Contract\ClientApp\**" />
+    <EmbeddedResource Remove="ChatService.Contract\ClientApp\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ChatService.Contract\ClientApp\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="ChatService.Contract\ClientApp\build\asset-manifest.json" />
-    <Content Remove="ChatService.Contract\ClientApp\build\manifest.json" />
-    <Content Remove="ChatService.Contract\ClientApp\package-lock.json" />
-    <Content Remove="ChatService.Contract\ClientApp\package.json" />
-    <Content Remove="ChatService.Contract\ClientApp\tsconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ChatService.Contract\ClientApp\build\asset-manifest.json" />
-    <None Include="ChatService.Contract\ClientApp\build\manifest.json" />
-    <None Include="ChatService.Contract\ClientApp\package-lock.json" />
-    <None Include="ChatService.Contract\ClientApp\package.json" />
-    <None Include="ChatService.Contract\ClientApp\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.20" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="NUnit" Version="3.13.2" />
   </ItemGroup>

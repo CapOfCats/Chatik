@@ -8,7 +8,7 @@
         public string user;
 
         /// <summary>
-        /// Активный чат подключения
+        /// Идентификатор активного чата подключения
         /// </summary>
         public string chat;
 

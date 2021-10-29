@@ -1,4 +1,6 @@
-﻿namespace СhatService.Contract
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace СhatService.Contract
 {
     public class Attachment
     {
@@ -10,6 +12,7 @@
         // <summary>
         // Идентификатор вложения
         // </summary>
+        [Key]
         public string ID;
 
         // <summary>

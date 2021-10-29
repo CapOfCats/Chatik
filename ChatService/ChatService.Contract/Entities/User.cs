@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace СhatService.Contract
 {
@@ -15,6 +18,7 @@ namespace СhatService.Contract
         /// <summary>
         /// Иденификатор пользователя
         /// </summary>
+        [Key]
         public string ID;
 
         /// <summary>
@@ -40,7 +44,8 @@ namespace СhatService.Contract
         /// <summary>
         /// Идентификаторы чатов, в которые входит пользователь
         /// </summary>
-        public string[] chats;
+        [ForeignKey("ID")]
+        public List<Chat> chats;
 
         /// <summary>
         /// Время последней активности пользователя

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace СhatService.Contract
 {
@@ -7,6 +10,7 @@ namespace СhatService.Contract
         // <summary>
         // Идентификатор сообщения
         // </summary>
+        [Key]
         public string ID;
 
         // <summary>
@@ -20,19 +24,22 @@ namespace СhatService.Contract
         public DateTime date;
 
         // <summary>
-        // Идентификаторы пользователей, прочитавших сообщение
+        // Пользователи, прочитавшие сообщение
         // </summary>
-        public string[] readBy;
+        [ForeignKey("ID")]
+        public List<User> readBy;
 
         // <summary>
-        // Идентификаторы сообщений, на которые был дан ответ
+        // Сообщения, на которые был дан ответ
         // </summary>
-        public string[] repliedFrom;
+        [ForeignKey("ID")]
+        public List<Message> repliedFrom;
 
         // <summary>
-        // Идентификаторы вложений, прикрепленных к сообщению
+        // Вложения, прикрепленные к сообщению
         // </summary>
-        public string[] attachments;
+        [ForeignKey("ID")]
+        public List<Attachment> attachments;
 
         // <summary>
         // Редактировось ли сообщение
@@ -45,8 +52,9 @@ namespace СhatService.Contract
         public bool deleted;
 
         // <summary>
-        // Идентификатор пользователя-автора сообщения
+        // Пользователь-автор сообщения
         // </summary>
-        public string author;
+        [ForeignKey("ID")]
+        public User author;
     }
 }
