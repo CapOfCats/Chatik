@@ -11,50 +11,46 @@ namespace СhatService.Contract
         // Идентификатор сообщения
         // </summary>
         [Key]
-        public string ID;
+        public int ID { get; set; }
 
         // <summary>
         // Текст сообщения
         // </summary>
-        public string content;
+        public string content { get; set; }
 
         // <summary>
         // Дата отправки сообщения
         // </summary>
-        public DateTime date;
+        public DateTime date { get; set; }
 
         // <summary>
         // Пользователи, прочитавшие сообщение
         // </summary>
-        [ForeignKey("ID")]
-        public List<User> readBy;
+        public List<int> readBy { get; set; }
 
         // <summary>
         // Сообщения, на которые был дан ответ
         // </summary>
-        [ForeignKey("ID")]
-        public List<Message> repliedFrom;
+        public List<int> repliedFrom { get; set; }
 
         // <summary>
         // Вложения, прикрепленные к сообщению
         // </summary>
-        [ForeignKey("ID")]
-        public List<Attachment> attachments;
+        public List<int> attachments { get; set; }
 
         // <summary>
         // Редактировось ли сообщение
         // </summary>
-        public bool edited;
+        public bool edited { get; set; }
 
         // <summary>
         // Было ли сообещние удалено
         // </summary>
-        public bool deleted;
+        public bool deleted { get; set; }
 
         // <summary>
         // Пользователь-автор сообщения
         // </summary>
-        [ForeignKey("ID")]
-        public User author;
+        public int author { get; set; }
     }
 }

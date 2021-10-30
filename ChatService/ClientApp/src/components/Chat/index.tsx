@@ -25,7 +25,7 @@ export interface IProps {
   setIsOpen: (value: boolean) => any
 }
 
-const currentUserID = '2'
+const currentUserID = 2
 
 export default function Chat({ isOpen, setIsOpen }: IProps) {
   const [chat, setChat] = useState<IChat | null>(null)

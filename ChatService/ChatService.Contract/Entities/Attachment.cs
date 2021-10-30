@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace СhatService.Contract
 {
@@ -13,36 +15,36 @@ namespace СhatService.Contract
         // Идентификатор вложения
         // </summary>
         [Key]
-        public string ID;
+        public int ID { get; set; }
 
         // <summary>
         // Тип вложения
         // </summary>
-        public AttachmentType type;
+        public AttachmentType type { get; set; }
 
         // <summary>
         // Название вложения
         // </summary>
-        public string name;
+        public string name { get; set; }
 
         // <summary>
         // Ссылка или контент вложения
         // </summary>
-        public string src;
+        public string src { get; set; }
 
         // <summary>
         // Ссылка или контент миниатюры вложения
         // </summary>
-        public string thumbnail;
+        public string thumbnail { get; set; }
 
         // <summary>
         // Ширирна вложения
         // </summary>
-        public int width;
+        public int width { get; set; }
 
         // <summary>
         // Высота вложения
         // </summary>
-        public int height;
+        public int height { get; set; }
     }
 }

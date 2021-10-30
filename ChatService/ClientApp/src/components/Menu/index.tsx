@@ -5,7 +5,7 @@ import cn from 'classnames'
 
 interface IProps {
   message: IMessage
-  setActiveMessage: Dispatch<SetStateAction<string | null>>
+  setActiveMessage: Dispatch<SetStateAction<number | null>>
   handleReplyClick: (e: React.MouseEvent<HTMLButtonElement>, message: IMessage) => any
   handleDeleteClick: (e: React.MouseEvent<HTMLButtonElement>, message: IMessage) => any
   handleChooseMoreClick: (e: React.MouseEvent<HTMLButtonElement>, message: IMessage) => any

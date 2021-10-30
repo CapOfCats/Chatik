@@ -14,7 +14,7 @@ export enum EAttachmentType {
 // Server
 
 export interface IUserServer {
-  ID: string
+  ID: number
   avatar: string
   name: string
   surname: string
@@ -24,14 +24,14 @@ export interface IUserServer {
 }
 
 export interface IChatServer {
-  ID: string
+  ID: number
   title: string
   users: IUser['ID'][]
   messages: IMessageServer['ID'][]
 }
 
 export interface IMessageServer {
-  ID: string
+  ID: number
   author: IUser['ID']
   content: string
   date: string
@@ -43,7 +43,7 @@ export interface IMessageServer {
 }
 
 export interface IAttachmentServer {
-  ID: string
+  ID: number
   type: EAttachmentType
   name: string
   src: string
@@ -55,7 +55,7 @@ export interface IAttachmentServer {
 // Client
 
 export interface IUser {
-  ID: string
+  ID: number
   avatar?: string
   name: string
   surname: string
@@ -65,13 +65,13 @@ export interface IUser {
 }
 
 export interface IChat {
-  ID: string
+  ID: number
   title: string
   users: IUser[]
 }
 
 export interface IMessage {
-  ID: string
+  ID: number
   author: IUser
   content: string
   date: Moment
@@ -83,7 +83,7 @@ export interface IMessage {
 }
 
 export interface IAttachment {
-  ID: string
+  ID: number
   type: EAttachmentType
   name: string
   src: string
@@ -110,7 +110,7 @@ export interface IGetMessages {
 
 export interface ISendMessage {
   text: string
-  repliedFrom: string[]
+  repliedFrom: number[]
   attachments: {
     name: string
     src: string
@@ -118,11 +118,11 @@ export interface ISendMessage {
 }
 
 export interface IDeleteMessages {
-  IDs: string[]
+  IDs: number[]
 }
 
 export interface IEditMessage {
-  ID: string
+  ID: number
   text: string
   attachments: {
     name: string,
@@ -144,7 +144,7 @@ export interface IUpdateMessages {
 
 export interface IUpdateUsers {
   users: {
-    ID: string
+    ID: number
     name: string
     surname: string
     avatar: string

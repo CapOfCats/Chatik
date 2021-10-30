@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System;
 
 namespace СhatService.Contract
 {
@@ -10,23 +11,21 @@ namespace СhatService.Contract
         // Идентификатор чата
         // </summary>
         [Key]
-        public string ID;
+        public int ID { get; set; }
 
         // <summary>
         // Заголовок чата
         // </summary>
-        public string title;
+        public string title { get; set; }
 
         // <summary>
         // Пользователи, входящие в чат
         // </summary>
-        [ForeignKey("ID")]
-        public List<User> users;
+        public List<int> users { get; set; }
 
         // <summary>
         // Сообщения, входящие в чат
         // </summary>
-        [ForeignKey("ID")]
-        public List<Message> messages;
+        public List<int> messages { get; set; }
     }
 }

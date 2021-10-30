@@ -19,38 +19,37 @@ namespace СhatService.Contract
         /// Иденификатор пользователя
         /// </summary>
         [Key]
-        public string ID;
+        public int ID { get; set; }
 
         /// <summary>
         /// Ссылка или контент аватара пользователя
         /// </summary>
-        public string avatar;
+        public string avatar { get; set; }
 
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        public string name;
+        public string name { get; set; }
 
         /// <summary>
         /// Фамилия пользователя
         /// </summary>
-        public string surname;
+        public string surname { get; set; }
 
         /// <summary>
         /// Роли пользователя
         /// </summary>
-        public Role[] roles;
+        public Role[] roles { get; set; }
 
         /// <summary>
         /// Идентификаторы чатов, в которые входит пользователь
         /// </summary>
-        [ForeignKey("ID")]
-        public List<Chat> chats;
+        public List<int> Chats { get; set; }
 
         /// <summary>
         /// Время последней активности пользователя
         /// </summary>
-        public DateTime lastActivity;
+        public DateTime lastActivity { get; set; }
     }
    
 }
