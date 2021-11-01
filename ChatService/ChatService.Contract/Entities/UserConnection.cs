@@ -5,7 +5,7 @@
         /// <summary>
         /// Идентификатор пользователя подключения
         /// </summary>
-        public string user;
+        public int user;
 
         /// <summary>
         /// Идентификатор активного чата подключения

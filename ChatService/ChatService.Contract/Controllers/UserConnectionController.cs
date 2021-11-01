@@ -14,8 +14,8 @@ namespace СhatService.Contract
             var httpContext = Context.GetHttpContext();
             Program.connections.Add(new UserConnection()
             {
-                user = httpContext.Request.Query["user"],
-                chat = httpContext.Request.Query["chat"],
+                user = Convert.ToInt32(httpContext.Request.Query["user"]),
+                chat = Convert.ToInt32(httpContext.Request.Query["chat"]),
                 connectionID = Context.ConnectionId,
                 typing = false
             });
