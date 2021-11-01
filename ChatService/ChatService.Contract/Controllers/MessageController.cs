@@ -19,16 +19,11 @@ namespace СhatService.Contract
             ChatCon = new ChatController(dBContext);
         }
 
-        public Message[] GetMessages(int offset, int count, int user, int chat)
+        public List<Message> GetMessages(int offset, int count, int user, int chat)
         {
             Chat ch = ChatCon.GetChat(user, chat);
-            List<Message> meslist = new List<Message>();
-            for(int i=offset; i<=count;i++)
-            {
-                var g = dbContext.Messages.Find(meslist[i]);
-                meslist.Add(g);
-            }
-            return meslist.ToArray();
+            
+            return dbContext.Messages.Select(x => ch.messages.Contains(x.ID)).ToList();
         }
         public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chat)
         {
