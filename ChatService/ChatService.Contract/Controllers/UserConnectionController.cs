@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
 
 namespace СhatService.Contract
 {
-    static class UserConnectionController
+    public class UserConnectionController
     {
-        static void Connect(UserConnection connection)
+        public void Connect(HubCallerContext Context)
         {
-           
+            var httpContext = Context.GetHttpContext();
+            Program.connections.Add(new UserConnection()
+            {
+                user = httpContext.Request.Query["user"],
+                chat = httpContext.Request.Query["chat"],
+                connectionID = Context.ConnectionId,
+                typing = false
+            });
         }
-        static void Disconnect(UserConnection connection)
+        public void Disconnect(HubCallerContext Context)
         {
- 
+            Program.connections.Remove(Program.connections.Single(c => c.connectionID == Context.ConnectionId));
         }
-        static void SetTyping(bool isTyping)
+        public void SetTyping(HubCallerContext Context, bool isTyping)
         {
-
+            Program.connections.Single(c => c.connectionID == Context.ConnectionId).typing = isTyping;
         }
     }
 }

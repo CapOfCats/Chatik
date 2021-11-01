@@ -58,7 +58,7 @@ export default function Chat({ isOpen, setIsOpen }: IProps) {
         console.log('Connected')
 
         newConnection.on('UpdateChat', ({ chat }) => {
-          // setChat(chat)
+          //newConnection.invoke('GetChat', chat) // setChat(chat)
           console.log(chat)
         })
       })
