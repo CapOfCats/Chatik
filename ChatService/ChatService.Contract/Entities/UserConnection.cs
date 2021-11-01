@@ -5,17 +5,17 @@
         /// <summary>
         /// Идентификатор пользователя подключения
         /// </summary>
-        public string user;
+        public int user;
 
         /// <summary>
         /// Идентификатор активного чата подключения
         /// </summary>
-        public string chat;
+        public int chat;
 
         /// <summary>
         /// Печатает ли пользователь в подключении
         /// </summary>
-        public string typing;
+        public bool typing;
 
         /// <summary>
         /// Количество сообщений, доступных пользователю для просмотра на данный момент

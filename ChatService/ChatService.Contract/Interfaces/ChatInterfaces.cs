@@ -11,7 +11,7 @@ namespace СhatService.Interfaces
         /// <summary>
         /// Получение чата
         /// </summary>
-        public Chat GetChat(string user, string chat);
+        public Chat GetChat(int user,int chat);
        
     }
 
@@ -20,20 +20,20 @@ namespace СhatService.Interfaces
         /// <summary>
         /// Получение сообщения
         /// </summary>
-        public Message[] GetMessages(int offset, int count, string user, string chat);
+        public Message[] GetMessages(int offset, int count, int user, int chat);
         /// <summary>
         /// Добавление сообщения
         /// </summary>
-        public void AddMessage(string text, string[] repliedFrom, Attachment[] attachments, string user, string chat);
+        public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chat);
         /// <summary>
         /// Изменение сообщения
         /// </summary>
         /// <param name="attachments">Объект с полями type, src, name, width, height</param>
-        public void EditMessage(string message, string text, object[] attachments, string[] repliedFrom, string user, string chat);
+        public void EditMessage(int message, string text, List<int> attachments, List<int> repliedFrom, int user, int chat);
         /// <summary>
         /// Удаление сообщений
         /// </summary>
-        public void DeleteMessages(string[] messages, string user, string chat);
+        public void DeleteMessages(List<int> messages, int user, int chat);
     }
 
     public interface IUserConnectionController
