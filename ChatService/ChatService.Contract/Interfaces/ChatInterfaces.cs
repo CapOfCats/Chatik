@@ -20,7 +20,7 @@ namespace СhatService.Interfaces
         /// <summary>
         /// Получение сообщения
         /// </summary>
-        public Message[] GetMessages(int offset, int count, int user, int chat);
+        public List<Message> GetMessages(int offset, int count, int user, int chat);
         /// <summary>
         /// Добавление сообщения
         /// </summary>
