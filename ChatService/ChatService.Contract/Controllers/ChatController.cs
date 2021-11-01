@@ -19,13 +19,11 @@ namespace СhatService.Contract
             // dbContext.SaveChanges();
             //dbContext.Chats.Where(c => c.ID == chat);
         }
-        public Chat GetChat(int user,int cha)
+        public Chat GetChat(int user, int cha)
         {
-            var chats = dbContext.Chats.
-                Where(u => u.ID ==cha)
-                .Union(dbContext.Chats.
-                Where(u => u.users.Contains(user))).ToList();
-            return chats[0];
+            var chat = dbContext.Chats
+                .Find(cha);
+            return chat;
             /*var chats = (from chat in dbContext.Chats.Include(p => p.users)
                          where chat.users.Contains(user) 
                          select chat).ToList();*/

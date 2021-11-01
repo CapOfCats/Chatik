@@ -29,7 +29,7 @@ namespace СhatService.Contract
         }
         public void GetMessages(int offset, int count)
         {
-            Message[] messes = MesCon.GetMessages(offset, count, conn.user, conn.chat);
+            List<Message> messes = MesCon.GetMessages(offset, count, conn.user, conn.chat);
             //кросс с клиентом
         }
         void SendMessage(string text, List<int> repliedFrom, List<int> attachments)

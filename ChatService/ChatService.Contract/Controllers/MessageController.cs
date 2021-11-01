@@ -23,21 +23,23 @@ namespace СhatService.Contract
         {
             Chat ch = ChatCon.GetChat(user, chat);
             
-            return dbContext.Messages.Select(x => ch.messages.Contains(x.ID)).ToList();
+            return dbContext.Messages.Where(x => ch.messages.Contains(x.ID)).ToList();
         }
         public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chat)
         {
             Chat ch = ChatCon.GetChat(user, chat);
-            dbContext.Messages.Add(new Message
-            { content = text,
-              author = user,
-              deleted = false, 
-              edited = false,
-              repliedFrom = repliedFrom,
-              attachments = attachments }) ;
+            var newMessage = new Message
+            {
+                content = text,
+                author = user,
+                deleted = false,
+                edited = false,
+                repliedFrom = repliedFrom,
+                attachments = attachments
+            };
+            dbContext.Messages.Add(newMessage) ;
             dbContext.SaveChanges();
-            List<Message>added = dbContext.Messages.TakeLast(1).ToList();
-            ch.messages.Add(added[0].ID);
+            ch.messages.Add(newMessage.ID);
             dbContext.Chats.Update(ch);
             dbContext.SaveChanges();
         }
@@ -48,17 +50,17 @@ namespace СhatService.Contract
             mes.attachments = attachments;
             mes.repliedFrom = repliedFrom;
             mes.edited = true;
-            dbContext.Messages.Update(mes);
             dbContext.SaveChanges();
         }
         public void DeleteMessages(List<int> messages, int user, int chat)
         {
-            for (int i = 0; i < messages.Count; i++)
+            dbContext.Messages.Where(x => messages.Contains(x.ID)).ToList().ForEach(x => x.deleted = true);
+            /*for (int i = 0; i < messages.Count; i++)
             {
                 var mes = dbContext.Messages.Find(messages[i]);
                 mes.deleted = true;
                 dbContext.Messages.Update(mes);
-            }
+            }*/
             dbContext.SaveChanges();
         }
     }
