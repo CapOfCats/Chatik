@@ -11,35 +11,60 @@ namespace СhatService.Contract
 {
     class MessageController : IMessageController
     {
+        ChatController ChatCon;
         private readonly DBContext dbContext;
         public MessageController(DBContext dBContext)
         {
             this.dbContext = dBContext;
-            //dbContext.Messages.Add(new Message { content = "kazino ebani vrot" });
-           // dbContext.SaveChanges();
+            ChatCon = new ChatController(dBContext);
         }
+
         public Message[] GetMessages(int offset, int count, int user, int chat)
         {
-            return dbContext.Messages.OrderByDescending(x => x.date).Skip(offset).Take(count).ToArray();
+            Chat ch = ChatCon.GetChat(user, chat);
+            List<Message> meslist = new List<Message>();
+            for(int i=offset; i<=count;i++)
+            {
+                var g = dbContext.Messages.Find(meslist[i]);
+                meslist.Add(g);
+            }
+            return meslist.ToArray();
         }
-        public void AddMessage(string text, List<int> repliedF, List<int> att, int user, int chat)
+        public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chat)
         {
-            dbContext.Messages.Add(new Message { content = text, author = user, deleted=false, edited=false, repliedFrom=repliedF, attachments=att }) ;
+            Chat ch = ChatCon.GetChat(user, chat);
+            dbContext.Messages.Add(new Message
+            { content = text,
+              author = user,
+              deleted = false, 
+              edited = false,
+              repliedFrom = repliedFrom,
+              attachments = attachments }) ;
+            dbContext.SaveChanges();
+            List<Message>added = dbContext.Messages.TakeLast(1).ToList();
+            ch.messages.Add(added[0].ID);
+            dbContext.Chats.Update(ch);
             dbContext.SaveChanges();
         }
         public void EditMessage(int message, string text, List <int> attachments, List<int> repliedFrom, int user, int chat)
         {
-            dbContext.Database.ExecuteSqlRaw($"UPDATE Messages SET content={text},attachments={attachments},repliedFrom={repliedFrom},edited=TRUE WHERE ID={message}");
+            var mes = dbContext.Messages.Find(message);
+            mes.content = text;
+            mes.attachments = attachments;
+            mes.repliedFrom = repliedFrom;
+            mes.edited = true;
+            dbContext.Messages.Update(mes);
             dbContext.SaveChanges();
         }
         public void DeleteMessages(List<int> messages, int user, int chat)
         {
             for (int i = 0; i < messages.Count; i++)
             {
-                var messes = dbContext.Messages.Where(m => m.ID == messages[i]).ToList();
-                dbContext.Messages.Remove(messes[i]);
-                dbContext.SaveChanges();
-            }            
+                var mes = dbContext.Messages.Find(messages[i]);
+                mes.deleted = true;
+                dbContext.Messages.Update(mes);
+            }
+            dbContext.SaveChanges();
         }
     }
 }
