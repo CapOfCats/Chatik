@@ -11,18 +11,18 @@ namespace СhatService.Contract
 {
     public class ChatHub : Hub
     {
-        UserConnectionController UC;
-        MessageController MC;
-        ChatController CC;
+        UserConnectionController userconnectioncontroller;
+        MessageController messagecontroller;
+        ChatController chatcontroller;
 
         private readonly DBContext dbContext;
 
         public ChatHub(DBContext dbContext)
         {
             this.dbContext = dbContext;
-            UC = new UserConnectionController();
-            MC = new MessageController(dbContext);
-            CC = new ChatController(dbContext);
+            userconnectioncontroller = new UserConnectionController();
+            messagecontroller = new MessageController(dbContext);
+            chatcontroller = new ChatController(dbContext);
 
             // test
             dbContext.Chats.Add(new Chat { title = "hello db" });
@@ -31,46 +31,50 @@ namespace СhatService.Contract
         }
         
         public void GetChat(int id)
-        {  
-           // foreach(UserConnection connection in Program.connections)
-             // chat = CC.GetChat(connection.user, id); Нужно объявление чата. И каким юзерам выдавать чат,а каким - нет? Всем - тоже не вариант. 
+        {
+            UserConnection userConnection = Program.connections.Where(c => c.connectionID == Context.ConnectionId).FirstOrDefault();
+            chatcontroller.GetChat(userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateChat", id);
         }
         public void GetMessages(int offset, int count)
         {
-            //List<Message> messes = MC.GetMessages(offset, count, conn.user, conn.chat);//та же муйня
+            UserConnection userConnection = Program.connections.Where(c => c.connectionID == Context.ConnectionId).FirstOrDefault();
+            List<Message> messes = messagecontroller.GetMessages(offset, count, userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", offset, count);         
         }
-        void SendMessage(string text, int[] repliedFrom, int[] attachments)
+        void SendMessage(string text, List<int> repliedFrom, List<int> attachments)
         {
-            //MC.AddMessage(text, repliedFrom, attachments, conn.user, conn.chat);
+            UserConnection userConnection = Program.connections.Where(c => c.connectionID == Context.ConnectionId).FirstOrDefault();
+            messagecontroller.AddMessage(text, repliedFrom, attachments, userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", text, repliedFrom, attachments);
         }
-        void DeleteMessages(int[] IDs)
+        void DeleteMessages(List<int> IDs)
         {
-            // MC.DeleteMessages(IDs, conn.user, conn.chat);
+            UserConnection userConnection = Program.connections.Where(c => c.connectionID == Context.ConnectionId).FirstOrDefault();
+            messagecontroller.DeleteMessages(IDs, userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", IDs);
         }
-        void EditMessage(int id, string text, int[] attachments, int[] repliedfrom)
+        void EditMessage(int id, string text, List<int> attachments, List<int> repliedfrom)
         {
-            // MC.EditMessage(id, text, attachments, repliedfrom, conn.user, conn.chat);
+            UserConnection userConnection = Program.connections.Where(c => c.connectionID == Context.ConnectionId).FirstOrDefault();
+            messagecontroller.EditMessage(id, text, attachments, repliedfrom, userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", id, text, attachments, repliedfrom);
         }
         void UserTyping(bool typing)
         {
-            UC.SetTyping(Context, typing);
+            userconnectioncontroller.SetTyping(Context, typing);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateUser", typing);
         }
 
         public override Task OnConnectedAsync()
         {
-            UC.Connect(Context);
+            userconnectioncontroller.Connect(Context);
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            UC.Disconnect(Context);
+            userconnectioncontroller.Disconnect(Context);
             return base.OnDisconnectedAsync(exception);
         }
 
