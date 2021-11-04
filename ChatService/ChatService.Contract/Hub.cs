@@ -11,6 +11,7 @@ namespace СhatService.Contract
 {
     public class ChatHub : Hub
     {
+        // TODO camelCase названия для экземпляров
         UserConnectionController userconnectioncontroller;
         MessageController messagecontroller;
         ChatController chatcontroller;
@@ -24,12 +25,16 @@ namespace СhatService.Contract
             messagecontroller = new MessageController(dbContext);
             chatcontroller = new ChatController(dbContext);
 
+            // TODO remove test
             // test
             dbContext.Chats.Add(new Chat { title = "hello db" });
             dbContext.SaveChanges();
             Console.WriteLine(dbContext.Chats.ToList()[0].title);
         }
-        
+
+        // TODO использовать ServerEvents
+
+        // TODO убрать id
         public void GetChat(int id)
         {
             UserConnection userConnection = Program.connections
@@ -38,6 +43,7 @@ namespace СhatService.Contract
             chatcontroller.GetChat(userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateChat", id);
         }
+
         public void GetMessages(int offset, int count)
         {
             UserConnection userConnection = Program.connections
@@ -46,6 +52,8 @@ namespace СhatService.Contract
             /*List<Message> messes =*/ messagecontroller.GetMessages(offset, count, userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", offset, count);         
         }
+
+        // TODO сделать методы public
         void SendMessage(string text, List<int> repliedFrom, List<int> attachments)
         {
             UserConnection userConnection = Program.connections
@@ -62,6 +70,8 @@ namespace СhatService.Contract
             messagecontroller.DeleteMessages(IDs, userConnection.user, userConnection.chat);
             Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", IDs);
         }
+
+        // TODO attachments - массив объектов {name, src}
         void EditMessage(int id, string text, List<int> attachments, List<int> repliedfrom)
         {
             UserConnection userConnection = Program.connections

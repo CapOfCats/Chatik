@@ -7,6 +7,9 @@ using СhatService.Interfaces;
 using Npgsql;
 using ChatService.Contract;
 using Microsoft.EntityFrameworkCore;
+
+// TODO Убрать лишние зависимости!
+
 namespace СhatService.Contract
 {
     class ChatController : IChatController
@@ -18,6 +21,7 @@ namespace СhatService.Contract
         }
         public Chat GetChat(int user, int chatID)
         {
+            // Использовать Where и FindFirstOrDefault
             var chat = dbContext.Chats
                 .Find(chatID);
             if (chat.users.Contains(user))

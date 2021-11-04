@@ -9,6 +9,7 @@ namespace СhatService.Contract
 {
     public class UserConnectionController
     {
+        // TODO программа ляжет, если будут неправльные параметры
         public void Connect(HubCallerContext Context)
         {
             var httpContext = Context.GetHttpContext();

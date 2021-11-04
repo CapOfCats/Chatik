@@ -11,6 +11,7 @@ namespace СhatService.Contract
 {
     class MessageController : IMessageController
     {
+        // TODO нормальное название
         ChatController ChatCon;
         private readonly DBContext dbContext;
         public MessageController(DBContext dBContext)
@@ -19,12 +20,19 @@ namespace СhatService.Contract
             ChatCon = new ChatController(dBContext);
         }
 
+        // TODO изменять messagesCount
+        // TODO где проверка?
         public List<Message> GetMessages(int offset, int count, int user, int chatID)
         {
             Chat chat = ChatCon.GetChat(user, chatID);
 
             return dbContext.Messages.Where(x => chat.messages.Contains(x.ID)).Skip(offset).Take(count).ToList();
         }
+
+        // TODO изменять messagesCount
+        // TODO где проверка?
+        // TODO нужен только 1 SaveChanges
+        // TODO убрать Update
         public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chatID)
         {
             Chat chat = ChatCon.GetChat(user, chatID);
@@ -43,6 +51,10 @@ namespace СhatService.Contract
             dbContext.Chats.Update(chat);
             dbContext.SaveChanges();
         }
+
+        // TODO где проверка?
+        // TODO убрать Update
+        // TODO точные названия параметров
         public void EditMessage(int messageID, string text, List<int> attachments, List<int> repliedFrom, int user, int chat)
         {
             var message = dbContext.Messages.Find(messageID);
@@ -53,6 +65,10 @@ namespace СhatService.Contract
             dbContext.Update(message);
             dbContext.SaveChanges();
         }
+
+        // TODO где проверка?
+        // TODO изменять messagesCount
+        // TODO Поправить логику в соответствии с новым entity Message
         public void DeleteMessages(List<int> messages, int user, int chat)
         {
             dbContext.Messages.Where(x => messages.Contains(x.ID)).ToList().ForEach(x => x.deleted = true);
