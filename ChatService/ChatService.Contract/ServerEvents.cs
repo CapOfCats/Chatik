@@ -17,17 +17,18 @@ namespace СhatService.Contract
         static void UpdateChat(IHubCallerClients Clients, Chat chat)
         {
 
-            Clients.Clients(Program.connections.Where(c => c.chat == chat.ID)
+            Clients.Clients(Program.connections
+                .Where(c => c.chat == chat.ID)
                 .Select(c => c.connectionID).ToList())
                 .SendAsync("UpdateChat", chat);
-
         }
         /// <summary>
         /// Отправляет обновленные сообщения
         /// </summary>
         static void UpdateMessages(IHubCallerClients Clients, Chat chat, object[] messages, Attachment[] attachments)
         {
-            Clients.Clients(Program.connections.Where(c => c.chat == chat.ID)
+            Clients.Clients(Program.connections
+                .Where(c => c.chat == chat.ID)
                 .Select(c => c.connectionID).ToList())
                 .SendAsync("UpdateMessages", messages, attachments);
         }
@@ -36,9 +37,17 @@ namespace СhatService.Contract
         /// </summary>
         static void UpdateUsers(IHubCallerClients Clients, Chat chat, object[] users)
         {
-            Clients.Clients(Program.connections.Where(c => c.chat == chat.ID)
+            Clients.Clients(Program.connections
+                .Where(c => c.chat == chat.ID)
                 .Select(c => c.connectionID).ToList())
                 .SendAsync("UpdateUsers", users);
+        }
+        static void UpdateUserChat(IHubCallerClients Clients, Chat chat, User user)
+        {
+            Clients.Clients(Program.connections
+                .Where(c => c.user == user.ID)
+                .Select(c => c.connectionID))
+                .SendAsync("UpdateUserChat", chat, user);
         }
     }
 }
