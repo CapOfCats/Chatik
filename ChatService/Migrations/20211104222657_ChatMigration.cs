@@ -5,28 +5,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace СhatService.Migrations
 {
-    public partial class Initial : Migration
+    public partial class ChatMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Attachments",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    type = table.Column<int>(type: "integer", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: true),
-                    src = table.Column<string>(type: "text", nullable: true),
-                    thumbnail = table.Column<string>(type: "text", nullable: true),
-                    width = table.Column<int>(type: "integer", nullable: false),
-                    height = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Attachments", x => x.ID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Chats",
                 columns: table => new
@@ -52,10 +34,10 @@ namespace СhatService.Migrations
                     date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     readBy = table.Column<List<int>>(type: "integer[]", nullable: true),
                     repliedFrom = table.Column<List<int>>(type: "integer[]", nullable: true),
-                    attachments = table.Column<List<int>>(type: "integer[]", nullable: true),
                     edited = table.Column<bool>(type: "boolean", nullable: false),
-                    deleted = table.Column<bool>(type: "boolean", nullable: false),
-                    author = table.Column<int>(type: "integer", nullable: false)
+                    usersDelete = table.Column<List<int>>(type: "integer[]", nullable: true),
+                    author = table.Column<int>(type: "integer", nullable: false),
+                    deletedForAll = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,6 +61,36 @@ namespace СhatService.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.ID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Attachments",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    type = table.Column<int>(type: "integer", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: true),
+                    src = table.Column<string>(type: "text", nullable: true),
+                    thumbnail = table.Column<string>(type: "text", nullable: true),
+                    width = table.Column<int>(type: "integer", nullable: false),
+                    height = table.Column<int>(type: "integer", nullable: false),
+                    MessageID = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Attachments", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Attachments_Messages_MessageID",
+                        column: x => x.MessageID,
+                        principalTable: "Messages",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Attachments_MessageID",
+                table: "Attachments",
+                column: "MessageID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -90,10 +102,10 @@ namespace СhatService.Migrations
                 name: "Chats");
 
             migrationBuilder.DropTable(
-                name: "Messages");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Messages");
         }
     }
 }

@@ -1,77 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using СhatService.Interfaces;
-using Npgsql;
 using ChatService.Contract;
-using Microsoft.EntityFrameworkCore;
+
 namespace СhatService.Contract
 {
     class MessageController : IMessageController
     {
-        // TODO нормальное название
-        ChatController ChatCon;
+        ChatController chatController;
         private readonly DBContext dbContext;
+
         public MessageController(DBContext dBContext)
         {
             this.dbContext = dBContext;
-            ChatCon = new ChatController(dBContext);
+            chatController = new ChatController(dBContext);
         }
 
-        // TODO изменять messagesCount
-        // TODO где проверка?
-        public List<Message> GetMessages(int offset, int count, int user, int chatID)
+        public List<Message> GetMessages(int offset, int count, int userID, int chatID, UserConnection userConnection)
         {
-            Chat chat = ChatCon.GetChat(user, chatID);
-
-            return dbContext.Messages.Where(x => chat.messages.Contains(x.ID)).Skip(offset).Take(count).ToList();
+            Chat chat = chatController.GetChat(userID, chatID);            
+            var messages = dbContext.Messages
+                .Where(x => chat.messages.Contains(x.ID))
+                .Skip(offset)
+                .Take(count)
+                .ToList();
+            userConnection.messagesCount += count;
+            return messages;          
         }
-
-        // TODO изменять messagesCount
-        // TODO где проверка?
-        // TODO нужен только 1 SaveChanges
-        // TODO убрать Update
-        public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chatID)
+        public void AddMessage(string content, List<int> repliedFrom, List<Attachment> attachments, int userID, int chatID, UserConnection userConnection)
         {
-            Chat chat = ChatCon.GetChat(user, chatID);
+            Chat chat = chatController.GetChat(userID, chatID);
             var newMessage = new Message
             {
-                content = text,
-                author = user,
-                deleted = false,
+                content = content,
+                author = userID,
                 edited = false,
                 repliedFrom = repliedFrom,
                 attachments = attachments
             };
+            userConnection.messagesCount++;
             dbContext.Messages.Add(newMessage);
-            dbContext.SaveChanges();
             chat.messages.Add(newMessage.ID);
-            dbContext.Chats.Update(chat);
             dbContext.SaveChanges();
         }
-
-        // TODO где проверка?
-        // TODO убрать Update
-        // TODO точные названия параметров
-        public void EditMessage(int messageID, string text, List<int> attachments, List<int> repliedFrom, int user, int chat)
+        public void EditMessage(int ID, string content, List<Attachment> attachments, List<int> repliedFrom, int userID, int chatID)
         {
-            var message = dbContext.Messages.Find(messageID);
-            message.content = text;
-            message.attachments = attachments;
-            message.repliedFrom = repliedFrom;
-            message.edited = true;
-            dbContext.Update(message);
-            dbContext.SaveChanges();
+            Chat chat = chatController.GetChat(userID, chatID);
+            var message = dbContext.Messages
+                .Where(x => chat.messages.Contains(ID))                        
+                .FirstOrDefault();
+            if (message == null)
+                throw new Exception("Такого сообщения не существует");
+            else 
+            if (message.author != userID)
+                throw new Exception("Не твоё-не трогай. Петух.");
+            else
+            {
+                message.content = content;
+                message.attachments = attachments;
+                message.repliedFrom = repliedFrom;
+                message.edited = true;
+                dbContext.SaveChanges();
+            }
         }
-
-        // TODO где проверка?
-        // TODO изменять messagesCount
-        // TODO Поправить логику в соответствии с новым entity Message
-        public void DeleteMessages(List<int> messages, int user, int chat)
+        public void DeleteMessages(List<int> messages, int userID, int chatID, UserConnection userConnection, bool deleteAll)
         {
-            dbContext.Messages.Where(x => messages.Contains(x.ID)).ToList().ForEach(x => x.deleted = true);
+            Chat chat = chatController.GetChat(userID, chatID);
+            int count = dbContext.Messages
+                    .Count(x => chat.messages.Contains(x.ID) && messages.Contains(x.ID));
+            if (!deleteAll)
+                 dbContext.Messages
+                    .Where(x => chat.messages.Contains(x.ID) &&  messages.Contains(x.ID))
+                    .ToList()
+                    .ForEach(x => x.usersDelete.Add(userID));
+            else
+            {
+                dbContext.Messages
+                .Where(x => chat.messages.Contains(x.ID) && messages.Contains(x.ID))
+                .ToList()
+                .ForEach(x => x.deletedForAll = true);
+            }
+            userConnection.messagesCount -= count;
             dbContext.SaveChanges();
         }
     }

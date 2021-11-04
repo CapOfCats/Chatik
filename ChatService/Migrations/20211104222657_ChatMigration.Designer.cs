@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace СhatService.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20211030200236_Initial")]
-    partial class Initial
+    [Migration("20211104222657_ChatMigration")]
+    partial class ChatMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace СhatService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("MessageID")
+                        .HasColumnType("integer");
 
                     b.Property<int>("height")
                         .HasColumnType("integer");
@@ -48,6 +51,8 @@ namespace СhatService.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("MessageID");
 
                     b.ToTable("Attachments");
                 });
@@ -80,9 +85,6 @@ namespace СhatService.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<List<int>>("attachments")
-                        .HasColumnType("integer[]");
-
                     b.Property<int>("author")
                         .HasColumnType("integer");
 
@@ -92,7 +94,7 @@ namespace СhatService.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<bool>("deleted")
+                    b.Property<bool>("deletedForAll")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("edited")
@@ -102,6 +104,9 @@ namespace СhatService.Migrations
                         .HasColumnType("integer[]");
 
                     b.Property<List<int>>("repliedFrom")
+                        .HasColumnType("integer[]");
+
+                    b.Property<List<int>>("usersDelete")
                         .HasColumnType("integer[]");
 
                     b.HasKey("ID");
@@ -137,6 +142,18 @@ namespace СhatService.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("СhatService.Contract.Attachment", b =>
+                {
+                    b.HasOne("СhatService.Contract.Message", null)
+                        .WithMany("attachments")
+                        .HasForeignKey("MessageID");
+                });
+
+            modelBuilder.Entity("СhatService.Contract.Message", b =>
+                {
+                    b.Navigation("attachments");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using СhatService.Contract;
 
 namespace СhatService.Interfaces
@@ -20,20 +17,20 @@ namespace СhatService.Interfaces
         /// <summary>
         /// Получение сообщения
         /// </summary>
-        public List<Message> GetMessages(int offset, int count, int user, int chat);
+        public List<Message> GetMessages(int offset, int count, int user, int chat, UserConnection userConnection);
         /// <summary>
         /// Добавление сообщения
         /// </summary>
-        public void AddMessage(string text, List<int> repliedFrom, List<int> attachments, int user, int chat);
+        public void AddMessage(string text, List<int> repliedFrom, List<Attachment> attachments, int user, int chat, UserConnection userConnection);
         /// <summary>
         /// Изменение сообщения
         /// </summary>
         /// <param name="attachments">Объект с полями type, src, name, width, height</param>
-        public void EditMessage(int message, string text, List<int> attachments, List<int> repliedFrom, int user, int chat);
+        public void EditMessage(int message, string text, List<Attachment> attachments, List<int> repliedFrom, int user, int chat);
         /// <summary>
         /// Удаление сообщений
         /// </summary>
-        public void DeleteMessages(List<int> messages, int user, int chat);
+        public void DeleteMessages(List<int> messages, int user, int chat, UserConnection userConnection, bool deleteAll);
     }
 
     public interface IUserConnectionController

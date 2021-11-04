@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using System.Linq;
 
 namespace СhatService.Contract
 {
     public class UserConnectionController
     {
-        // TODO программа ляжет, если будут неправльные параметры
         public void Connect(HubCallerContext Context)
         {
             var httpContext = Context.GetHttpContext();

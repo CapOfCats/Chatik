@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using ChatService.Contract;
 using Microsoft.AspNetCore.SignalR;
@@ -11,90 +10,90 @@ namespace СhatService.Contract
 {
     public class ChatHub : Hub
     {
-        // TODO camelCase названия для экземпляров
-        UserConnectionController userconnectioncontroller;
-        MessageController messagecontroller;
-        ChatController chatcontroller;
+        
+        UserConnectionController userConnectionController;
+        MessageController messageController;
+        ChatController chatController;
 
         private readonly DBContext dbContext;
 
         public ChatHub(DBContext dbContext)
         {
             this.dbContext = dbContext;
-            userconnectioncontroller = new UserConnectionController();
-            messagecontroller = new MessageController(dbContext);
-            chatcontroller = new ChatController(dbContext);
-
-            // TODO remove test
-            // test
-            dbContext.Chats.Add(new Chat { title = "hello db" });
-            dbContext.SaveChanges();
-            Console.WriteLine(dbContext.Chats.ToList()[0].title);
+            userConnectionController = new UserConnectionController();
+            messageController = new MessageController(dbContext);
+            chatController = new ChatController(dbContext);
         }
-
-        // TODO использовать ServerEvents
-
-        // TODO убрать id
-        public void GetChat(int id)
+        
+        public void GetChat()
         {
             UserConnection userConnection = Program.connections
                 .Where(c => c.connectionID == Context.ConnectionId)
                 .FirstOrDefault();
-            chatcontroller.GetChat(userConnection.user, userConnection.chat);
-            Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateChat", id);
+            chatController.GetChat(userConnection.user, userConnection.chat);
+            Clients.Clients(
+                this.Context.ConnectionId)
+                .SendAsync("UpdateChat");
         }
-
         public void GetMessages(int offset, int count)
         {
             UserConnection userConnection = Program.connections
                 .Where(c => c.connectionID == Context.ConnectionId)
                 .FirstOrDefault();
-            /*List<Message> messes =*/ messagecontroller.GetMessages(offset, count, userConnection.user, userConnection.chat);
-            Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", offset, count);         
+            //userConnection.messagesCount += count;
+            /*List<Message> messes =*/ messageController.GetMessages(offset, count, userConnection.user, userConnection.chat,userConnection);
+            Clients.Clients(
+                this.Context.ConnectionId)
+                .SendAsync("UpdateMessages", offset, count);         
         }
-
-        // TODO сделать методы public
-        void SendMessage(string text, List<int> repliedFrom, List<int> attachments)
+       public void SendMessage(string text, List<int> repliedFrom, List<Attachment> attachments)
         {
             UserConnection userConnection = Program.connections
                 .Where(c => c.connectionID == Context.ConnectionId)
                 .FirstOrDefault();
-            messagecontroller.AddMessage(text, repliedFrom, attachments, userConnection.user, userConnection.chat);
-            Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", text, repliedFrom, attachments);
+            messageController.AddMessage(text, repliedFrom, attachments, userConnection.user, userConnection.chat,userConnection);
+            //userConnection.messagesCount++;
+            Clients.Clients(
+                this.Context.ConnectionId)
+                .SendAsync("UpdateMessages", text, repliedFrom, attachments);
         }
-        void DeleteMessages(List<int> IDs)
+        public void DeleteMessages(List<int> IDs, bool deleteAll)
         {
             UserConnection userConnection = Program.connections
                 .Where(c => c.connectionID == Context.ConnectionId)
                 .FirstOrDefault();
-            messagecontroller.DeleteMessages(IDs, userConnection.user, userConnection.chat);
-            Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", IDs);
+            messageController.DeleteMessages(IDs, userConnection.user, userConnection.chat, userConnection, deleteAll);
+            Clients.Clients(
+                this.Context.ConnectionId)
+                .SendAsync("UpdateMessages", IDs);
         }
-
-        // TODO attachments - массив объектов {name, src}
-        void EditMessage(int id, string text, List<int> attachments, List<int> repliedfrom)
+        public void EditMessage(int id, string text, List<Attachment> attachments, List<int> repliedfrom)
         {
             UserConnection userConnection = Program.connections
                 .Where(c => c.connectionID == Context.ConnectionId)
                 .FirstOrDefault();
-            messagecontroller.EditMessage(id, text, attachments, repliedfrom, userConnection.user, userConnection.chat);
-            Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateMessages", id, text, attachments, repliedfrom);
+            messageController.EditMessage(id, text, attachments, repliedfrom, userConnection.user, userConnection.chat);
+            Clients.Clients(
+                this.Context.ConnectionId)
+                .SendAsync("UpdateMessages", id, text, attachments, repliedfrom);
         }
-        void UserTyping(bool typing)
+       public void UserTyping(bool typing)
         {
-            userconnectioncontroller.SetTyping(Context, typing);
-            Clients.Clients(this.Context.ConnectionId).SendAsync("UpdateUser", typing);
+            userConnectionController.SetTyping(Context, typing);
+            Clients.Clients(
+                this.Context.ConnectionId)
+                .SendAsync("UpdateUser", typing);
         }
 
         public override Task OnConnectedAsync()
         {
-            userconnectioncontroller.Connect(Context);
+            userConnectionController.Connect(Context);
             return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            userconnectioncontroller.Disconnect(Context);
+            userConnectionController.Disconnect(Context);
             return base.OnDisconnectedAsync(exception);
         }
 

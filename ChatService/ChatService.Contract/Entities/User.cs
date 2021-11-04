@@ -1,12 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace СhatService.Contract
 {
-    // TODO Поменять deleted на usersDelete
-    // TODO обновить миграцию
     public class User
     {
         public enum Role

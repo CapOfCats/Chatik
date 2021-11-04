@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using СhatService.Interfaces;
-using Npgsql;
 using ChatService.Contract;
-using Microsoft.EntityFrameworkCore;
-
-// TODO Убрать лишние зависимости!
+using System.Linq;
 
 namespace СhatService.Contract
 {
@@ -21,12 +14,12 @@ namespace СhatService.Contract
         }
         public Chat GetChat(int user, int chatID)
         {
-            // Использовать Where и FindFirstOrDefault
             var chat = dbContext.Chats
-                .Find(chatID);
-            if (chat.users.Contains(user))
-                return chat;
-            else return null;
+                .Where(x => x.users.Contains(user) && x.ID == chatID)                     
+                .FirstOrDefault();
+            if (chat == null)
+                throw new Exception("Пользователь не имеет доступа к этому чату/ Чат не найден.");
+            else return chat;
         }
     }
 }
