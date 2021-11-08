@@ -10,13 +10,18 @@ namespace СhatService.Contract
         public void Connect(HubCallerContext Context)
         {
             var httpContext = Context.GetHttpContext();
-            Program.connections.Add(new UserConnection()
+            try
             {
-                user = Convert.ToInt32(httpContext.Request.Query["user"]),
-                chat = Convert.ToInt32(httpContext.Request.Query["chat"]),
-                connectionID = Context.ConnectionId,
-                typing = false
-            });
+                Program.connections.Add(new UserConnection()
+                {
+                    user = Convert.ToInt32(httpContext.Request.Query["user"]),
+                    chat = Convert.ToInt32(httpContext.Request.Query["chat"]),
+                    connectionID = Context.ConnectionId,
+                    typing = false,
+                    messagesCount = 0
+                });
+            }
+            catch (Exception error) { Console.WriteLine(error); }
         }
         public void Disconnect(HubCallerContext Context)
         {

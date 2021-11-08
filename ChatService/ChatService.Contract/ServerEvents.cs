@@ -10,7 +10,7 @@ namespace СhatService.Contract
         /// <summary>
         /// Отправляет обновленный чат
         /// </summary>
-        static void UpdateChat(IHubCallerClients Clients, Chat chat)
+        public static void UpdateChat(IHubCallerClients Clients, Chat chat)
         {
 
             Clients.Clients(Program.connections
@@ -21,24 +21,28 @@ namespace СhatService.Contract
         /// <summary>
         /// Отправляет обновленные сообщения
         /// </summary>
-        static void UpdateMessages(IHubCallerClients Clients, Chat chat, object[] messages, Attachment[] attachments)
+        public static void UpdateMessages(IHubCallerClients Clients, Chat chat, object[] messages, Attachment[] attachments)
         {
+            Program.connections
+                .Where(c => c.chat == chat.ID)
+                .Select(c => { c.messagesCount = messages.Length; return c; });
+
             Clients.Clients(Program.connections
                 .Where(c => c.chat == chat.ID)
                 .Select(c => c.connectionID).ToList())
-                .SendAsync("UpdateMessages", messages, attachments);
+                .SendAsync("UpdateMessages", messages.Cast<Message>().Where(m => m.hide == false), attachments);
         }
         /// <summary>
         /// Отправляет обновленные данные о пользователе
         /// </summary>
-        static void UpdateUsers(IHubCallerClients Clients, Chat chat, object[] users)
+        public static void UpdateUsers(IHubCallerClients Clients, Chat chat, object[] users)
         {
             Clients.Clients(Program.connections
                 .Where(c => c.chat == chat.ID)
                 .Select(c => c.connectionID).ToList())
-                .SendAsync("UpdateUsers", users);
+                .SendAsync("UpdateUsers", users.Cast<User>().Select(u => { u.Chats = null; return u; }));
         }
-        static void UpdateUserChat(IHubCallerClients Clients, Chat chat, User user)
+        public static void UpdateUserChat(IHubCallerClients Clients, Chat chat, User user)
         {
             Clients.Clients(Program.connections
                 .Where(c => c.user == user.ID)

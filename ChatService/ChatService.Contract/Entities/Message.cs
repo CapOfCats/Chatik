@@ -51,9 +51,15 @@ namespace СhatService.Contract
         /// Пользователь-автор сообщения
         /// </summary>
         public int author { get; set; }
+        
         /// <summary>
         /// Параметр, принимающий истину, если сообщение удалено для всех пользователей(в т.ч. и новых)
         /// </summary>
         public bool deletedForAll { get; set; }
+        
+        /// <summary>
+        /// Параметр, принимающий истину, если сообщение скрыто от пользователя
+        /// </summary>
+        public bool hide { get; set; }
     }
 }
