@@ -35,7 +35,7 @@ namespace СhatService.Contract
         /// <summary>
         /// Вложения, прикрепленные к сообщению
         /// </summary>
-        public List<Attachment> attachments { get; set; }
+        public List<int> attachments { get; set; }
 
         /// <summary>
         /// Редактировось ли сообщение
@@ -43,23 +43,18 @@ namespace СhatService.Contract
         public bool edited { get; set;}
 
         /// <summary>
-        /// Список айди юзеров, для которых сообщение удалено
-        /// </summary>
-        public List<int>usersDelete { get; set; }
-
-        /// <summary>
         /// Пользователь-автор сообщения
         /// </summary>
         public int author { get; set; }
-        
+
         /// <summary>
-        /// Параметр, принимающий истину, если сообщение удалено для всех пользователей(в т.ч. и новых)
+        /// Список пользователей, для которых сообщение удалено
+        /// </summary>
+        public List<int> usersDelete { get; set; }
+
+        /// <summary>
+        /// Удалено ли сообщение для всех пользователей
         /// </summary>
         public bool deletedForAll { get; set; }
-        
-        /// <summary>
-        /// Параметр, принимающий истину, если сообщение скрыто от пользователя
-        /// </summary>
-        public bool hide { get; set; }
     }
 }

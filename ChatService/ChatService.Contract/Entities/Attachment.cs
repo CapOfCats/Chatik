@@ -4,7 +4,7 @@ namespace СhatService.Contract
 {
     public class Attachment
     {
-        public enum AttachmentType
+        public enum EAttachmentType
         {
             Image = 1
         }
@@ -18,7 +18,7 @@ namespace СhatService.Contract
         // <summary>
         // Тип вложения
         // </summary>
-        public AttachmentType type { get; set; }
+        public EAttachmentType type { get; set; }
 
         // <summary>
         // Название вложения

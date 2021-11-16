@@ -30,7 +30,7 @@ namespace СhatService.Interfaces
         /// <summary>
         /// Удаление сообщений
         /// </summary>
-        public void DeleteMessages(List<int> messages, int user, int chat, UserConnection userConnection, bool deleteAll);
+        public void DeleteMessages(List<int> messages, int user, int chat, bool deleteAll);
     }
 
     public interface IUserConnectionController
@@ -41,5 +41,12 @@ namespace СhatService.Interfaces
         /// Изменяет состояние "печатает" пользователя
         /// </summary>
         public void SetTyping(bool isTyping, string user);
+    }
+    public interface IAttachmentController
+    {
+        /// <summary>
+        /// Изменяет состояние "печатает" пользователя
+        /// </summary>
+        public List<Attachment> GetAttachments(List<int> attachmentsIDs);
     }
 }

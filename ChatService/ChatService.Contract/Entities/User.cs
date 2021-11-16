@@ -6,7 +6,7 @@ namespace СhatService.Contract
 {
     public class User
     {
-        public enum Role
+        public enum ERole
         {
             Customer = 0,
             Vendor = 1,
@@ -38,7 +38,7 @@ namespace СhatService.Contract
         /// <summary>
         /// Роли пользователя
         /// </summary>
-        public Role[] roles { get; set; }
+        public ERole[] roles { get; set; }
 
         /// <summary>
         /// Идентификаторы чатов, в которые входит пользователь

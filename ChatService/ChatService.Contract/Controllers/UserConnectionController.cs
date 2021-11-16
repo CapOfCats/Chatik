@@ -17,16 +17,18 @@ namespace СhatService.Contract
                     user = Convert.ToInt32(httpContext.Request.Query["user"]),
                     chat = Convert.ToInt32(httpContext.Request.Query["chat"]),
                     connectionID = Context.ConnectionId,
-                    typing = false,
-                    messagesCount = 0
                 });
             }
-            catch (Exception error) { Console.WriteLine(error); }
+            catch (Exception error) {
+                Console.WriteLine(error.Message);
+            }
         }
+
         public void Disconnect(HubCallerContext Context)
         {
             Program.connections.Remove(Program.connections.Single(c => c.connectionID == Context.ConnectionId));
         }
+
         public void SetTyping(HubCallerContext Context, bool isTyping)
         {
             Program.connections.Single(c => c.connectionID == Context.ConnectionId).typing = isTyping;

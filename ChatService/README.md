@@ -66,15 +66,16 @@
 ## Client:
 - GetChat()
 - GetMessages(int offset, int count)
-- SendMessage(string text, UUID[] repliedFrom, < name, src >[] attachments)
-- DeleteMessages(UUID[] IDs)
-- EditMessage(UUID ID, string text, < name, src >[] attachmens, UUID[] repliedFrom)
+- 
+(string text, int[] repliedFrom, < name, src >[] attachments)
+- DeleteMessages(int[] IDs)
+- EditMessage(int ID, string text, < name, src >[] attachmens, int[] repliedFrom)
 - UserTyping(bool typing)
 
 ## Server:
-- UpdateChat(Chat chat)
-- UpdateMessages(< ...Message, bool hide >[] messages, Attachment[] attachments) # Add hide field for repliedFrom messages that does not included in observable chat
-- UpdateUsers(< UUID ID, string name, string surname, bool typing, bool online, string avatar, byte[] roles >[] users)
+- UpdateChat(< int ID, string title, int[] users > chat)
+- UpdateMessages(< int ID, string content, DateTime date, List< int > readBy, List< int > repliedFrom, List< int > attachments, bool edited, int author, bool hide, bool deleted >[] messages, Attachment[] attachments)
+- UpdateUsers(< int ID, string name, string surname, bool typing, bool online, string avatar, ERole[] roles >[] users)
 
 
 # Controller:
