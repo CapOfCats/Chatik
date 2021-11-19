@@ -26,5 +26,6 @@
         /// Индификатор соединения
         /// </summary>
         public string connectionID;
+       
     }
 }

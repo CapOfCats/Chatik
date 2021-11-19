@@ -9,12 +9,14 @@ namespace СhatService.Contract
     class MessageController : IMessageController
     {
         ChatController chatController;
+        AttachmentsController attachmentsController;
         private readonly DBContext dbContext;
 
         public MessageController(DBContext dBContext)
         {
             this.dbContext = dBContext;
             chatController = new ChatController(dBContext);
+            attachmentsController = new AttachmentsController(dBContext);
         }
 
         public List<Message> GetMessages(int offset, int count, int userID, int chatID, UserConnection userConnection)
@@ -38,17 +40,17 @@ namespace СhatService.Contract
 
         public void AddMessage(string content, List<int> repliedFrom, List<Attachment> attachments, int userID, int chatID, UserConnection userConnection)
         {
-            // TODO add attachments
-
+            List<int> attachmentsIDs = new List<int>();
             Chat chat = chatController.GetChat(userID, chatID);
+            if (attachments.Count != 0)
+                attachmentsIDs=attachmentsController.AddAttachments(attachments);
             var newMessage = new Message
             {
                 content = content,
                 author = userID,
                 edited = false,
                 repliedFrom = repliedFrom,
-                // TODO set new attachments ids
-                // attachments = attachments
+                attachments = attachmentsIDs
             };
             userConnection.messagesCount++;
             dbContext.Messages.Add(newMessage);
@@ -58,7 +60,7 @@ namespace СhatService.Contract
 
         public void EditMessage(int ID, string content, List<Attachment> attachments, List<int> repliedFrom, int userID, int chatID)
         {
-            // TODO add attachments
+            List<int> attachmentsIDs = new List<int>();
             Chat chat = chatController.GetChat(userID, chatID);
             Message message = dbContext.Messages
                 .Where(x => chat.messages.Contains(ID))                        
@@ -68,11 +70,10 @@ namespace СhatService.Contract
                 throw new Exception("Такого сообщения не существует");
 
             if (message.author != userID)
-                throw new Exception("Не твоё - не трогай. Петух");
-
+                throw new Exception("Не твоё - не трогай. Петух");            
+            if(attachments.Count!=0)
+                message.attachments = attachmentsController.AddAttachments(attachments);
             message.content = content;
-            // TODO set new attachments ids
-            // message.attachments = attachments
             message.repliedFrom = repliedFrom;
             message.edited = true;
             dbContext.SaveChanges();

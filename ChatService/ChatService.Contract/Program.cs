@@ -20,6 +20,7 @@ namespace СhatService.Contract
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseWebRoot("Images");
                 });
         } 
     }
