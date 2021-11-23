@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.SignalR;
 
@@ -20,16 +21,14 @@ namespace СhatService.Contract
         /// </summary>
         public void UpdateChat(string connectionID, Chat chat)
         {
-            chat.messages = null;
-
+            chat.messages.Clear(); // Replaced chat.messages = null by chat.messages.Clear()
             Clients.Clients(connectionID)
                 .SendAsync("UpdateChat", chat);
         }
 
         public void UpdateChat(List<string> connectionIDs, Chat chat)
         {
-            chat.messages = null;
-
+            chat.messages.Clear(); // Replaced chat.messages = null by chat.messages.Clear()
             Clients.Clients(connectionIDs)
                 .SendAsync("UpdateChat", chat);
         }
@@ -88,14 +87,13 @@ namespace СhatService.Contract
                     .Where(c => c.chat == chat)
                     .Select(c => c.connectionID).ToList()
             )
-                .SendAsync("UpdateUsers", users.Select(u => new { 
+                .SendAsync("UpdateUsers", users.Select(u => new {
                     ID = u.ID,
                     avatar = u.avatar,
                     name = u.name,
                     surname = u.surname,
                     roles = u.roles,
-                    // TODO 15 minutes
-                    // online = u.lastActivity > 
+                    online = DateTime.Now.Subtract(u.lastActivity).Minutes < 15, // Condition : Now - LastTime < 15 (?)
                     typing = Program.connections.Find(c => c.user == u.ID && c.chat == chat).typing,
                 }));
         }

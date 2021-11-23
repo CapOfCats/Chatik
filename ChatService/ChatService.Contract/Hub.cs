@@ -32,20 +32,29 @@ namespace СhatService.Contract
             serverEvents = new ServerEvents(Clients);
         }
         
-        public void GetChat()
+        public void UpdateChat()
         {
             serverEvents.UpdateChat(userConnection.connectionID, chatController.GetChat(userConnection.user, userConnection.chat));
         }
 
         public void GetMessages(GetMessagesRequest request)
         {
+            // Changelog:
+            // Separation of lambda functions from variables
+            // Removal of new HashSet<int>(...)
+
             List<Message> messages = messageController
                 .GetMessages(userConnection.messagesCount, request.count, userConnection.user, userConnection.chat, userConnection);
-            List<int> messagesIDs = messages.Select(x => x.ID).ToList();
-            List<Message> hiddenMessages = messageController
-                .GetMessages(new HashSet<int>(messages.SelectMany(m => m.repliedFrom)).Where(m => messagesIDs.Contains(m)).ToList());
-            List<Attachment> attachments = attachmentsController
-                .GetAttachments(new HashSet<int>(messages.SelectMany(m => m.attachments)).ToList());
+
+            // Func<T_1, T_2, ..., T_i, T_out> func_name = (var_1, var_2, ..., var_i) => Statments; where T_i is the func inputs and statements its output.
+            Func<List<Message>, List<int>> getMessagesIDs = m_arr => m_arr.Select(m => m.ID).ToList();
+            Func<List<Message>, List<int>> getAttachmentsIDs = m_arr => m_arr.SelectMany(m => m.attachments).ToList();
+            Func<List<Message>, List<int>, List<int>> getHiddenMessagesIDs = (m_arr, id_arr) =>
+                m_arr.SelectMany(m => m.repliedFrom).Where(m => id_arr.Contains(m)).ToList();
+
+            List<int> messagesIDs = getMessagesIDs(messages);
+            List<Message> hiddenMessages = messageController.GetMessages(getHiddenMessagesIDs(messages, messagesIDs));
+            List<Attachment> attachments = attachmentsController.GetAttachments(getAttachmentsIDs(messages));
 
             userConnection.messagesCount += request.count;
 
@@ -57,40 +66,96 @@ namespace СhatService.Contract
             );
         }
 
+
+
         public void SendMessage(SendMessageRequest request)
         {
             messageController.AddMessage(request.text, request.repliedFrom, request.attachments, userConnection.user, userConnection.chat, userConnection);
 
-            // TODO recalculate messagesCount for all chat connections
+            
+            Program.connections.Where(c => c.chat == userConnection.chat).Select(count => count.messagesCount += 1);
 
-            // TODO use GetMessages code here
-            //serverEvents.UpdateMessages(userConnection.chat);
+            List<Message> messages = 
+                messageController.GetMessages(userConnection.messagesCount, 1, userConnection.user, userConnection.chat, userConnection);
+            //Add those functions to the static method!
+            Func<List<Message>, List<int>> getMessagesIDs = m_arr => m_arr.Select(m => m.ID).ToList();
+            Func<List<Message>, List<int>> getAttachmentsIDs = m_arr => m_arr.SelectMany(m => m.attachments).ToList();
+            Func<List<Message>, List<int>, List<int>> getHiddenMessagesIDs = (m_arr, id_arr) =>
+                m_arr.SelectMany(m => m.repliedFrom).Where(m => id_arr.Contains(m)).ToList();
+
+            List<int> messagesIDs = getMessagesIDs(messages);
+            List<Message> hiddenMessages = messageController.GetMessages(getHiddenMessagesIDs(messages, messagesIDs));
+            List<Attachment> attachments = attachmentsController.GetAttachments(getAttachmentsIDs(messages));
+
+            serverEvents.UpdateMessages(
+                userConnection.chat,
+                messages,
+                hiddenMessages,
+                attachments
+            );
         }
 
         public void DeleteMessages(DeleteMessagesRequest request)
         {
             messageController.DeleteMessages(request.IDs, userConnection.user, userConnection.chat, request.deleteForAll);
 
-            // TODO recalculate messagesCount for all chat connections
+            
+            Program.connections.Where(c => c.chat == userConnection.chat).Select(count => count.messagesCount += request.IDs.Count);
 
-            // TODO use GetMessages code here
-            // serverEvents.UpdateMessages(userConnection.chat)
+            List<Message> messages =
+                messageController.GetMessages(userConnection.messagesCount, 1, userConnection.user, userConnection.chat, userConnection);
+            //Add those functions to the static method!
+            Func<List<Message>, List<int>> getMessagesIDs = m_arr => m_arr.Select(m => m.ID).ToList();
+            Func<List<Message>, List<int>> getAttachmentsIDs = m_arr => m_arr.SelectMany(m => m.attachments).ToList();
+            Func<List<Message>, List<int>, List<int>> getHiddenMessagesIDs = (m_arr, id_arr) =>
+                m_arr.SelectMany(m => m.repliedFrom).Where(m => id_arr.Contains(m)).ToList();
+
+            List<int> messagesIDs = getMessagesIDs(messages);
+            List<Message> hiddenMessages = messageController.GetMessages(getHiddenMessagesIDs(messages, messagesIDs));
+            List<Attachment> attachments = attachmentsController.GetAttachments(getAttachmentsIDs(messages));
+
+            serverEvents.UpdateMessages(
+                userConnection.chat,
+                messages,
+                hiddenMessages,
+                attachments
+            );
+
         }
 
         public void EditMessage(EditMessageRequest request)
         {
             messageController.EditMessage(request.id, request.text, request.attachments, request.repliedfrom, userConnection.user, userConnection.chat);
 
-            // TODO use GetMessages code here
-            // serverEvents.UpdateMessages(userConnection.chat)
+            List<Message> messages =
+                messageController.GetMessages(userConnection.messagesCount, 1, userConnection.user, userConnection.chat, userConnection);
+            //Add those functions to the static method!
+            Func<List<Message>, List<int>> getMessagesIDs = m_arr => m_arr.Select(m => m.ID).ToList();
+            Func<List<Message>, List<int>> getAttachmentsIDs = m_arr => m_arr.SelectMany(m => m.attachments).ToList();
+            Func<List<Message>, List<int>, List<int>> getHiddenMessagesIDs = (m_arr, id_arr) =>
+                m_arr.SelectMany(m => m.repliedFrom).Where(m => id_arr.Contains(m)).ToList();
+
+            List<int> messagesIDs = getMessagesIDs(messages);
+            List<Message> hiddenMessages = messageController.GetMessages(getHiddenMessagesIDs(messages, messagesIDs));
+            List<Attachment> attachments = attachmentsController.GetAttachments(getAttachmentsIDs(messages));
+
+            serverEvents.UpdateMessages(
+                userConnection.chat,
+                messages,
+                hiddenMessages,
+                attachments
+            );
         }
 
         public void UserTyping(UserTypingRequest request)
         {
             userConnectionController.SetTyping(Context, request.typing);
 
-            // TODO get users
-            // serverEvents.UpdateUsers(userConnection.chat, userController.getUsers(userConnection.chat));
+            //Where is UserController?
+            List<User> Users = new List<User>();
+            Users.Cast<User>().Select(u => u.ID == userConnection.user);
+
+            serverEvents.UpdateUsers(userConnection.chat, Users);
         }
 
         public override Task OnConnectedAsync()
