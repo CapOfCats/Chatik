@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.SignalR;
+using СhatService.Contract;
 
-namespace СhatService.Contract
-{ /// <summary>
-  /// Вспомогательный класс серверных событий
-  /// </summary>
-    public class ServerEvents
+namespace СhatService.Application
+{
+    /// <summary>
+    /// Вспомогательный класс серверных событий
+    /// </summary>
+    class ServerEvents
     {
         public IHubCallerClients Clients;
 

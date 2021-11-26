@@ -1,0 +1,301 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Application\\ChatService.Application.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Application\\ChatService.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Application\\ChatService.Application.csproj",
+        "projectName": "ChatService.Application",
+        "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Application\\ChatService.Application.csproj",
+        "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.BusinessLogic\\ChatService.BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.BusinessLogic\\ChatService.BusinessLogic.csproj"
+              },
+              "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj": {
+                "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj"
+              },
+              "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj": {
+                "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNet.SignalR": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Microsoft.AspNetCore.SpaServices": {
+              "target": "Package",
+              "version": "[3.1.20, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.BusinessLogic\\ChatService.BusinessLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.BusinessLogic\\ChatService.BusinessLogic.csproj",
+        "projectName": "ChatService.BusinessLogic",
+        "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.BusinessLogic\\ChatService.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.BusinessLogic\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj": {
+                "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNet.SignalR": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Microsoft.AspNetCore.SpaServices": {
+              "target": "Package",
+              "version": "[3.1.20, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj",
+        "projectName": "ChatService.Contract",
+        "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\ChatService.Contract.csproj",
+        "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Contract\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.SignalR.Core": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj",
+        "projectName": "ChatService.Tests",
+        "projectPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj",
+        "packagesPath": "C:\\Users\\danil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\danil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
