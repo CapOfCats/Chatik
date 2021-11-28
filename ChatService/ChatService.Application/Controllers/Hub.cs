@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using System.Linq;
 using ChatService.BusinessLogic;
+using СhatService.Application;
 
 namespace СhatService.Contract
 {
@@ -29,7 +30,7 @@ namespace СhatService.Contract
             chatService = new ChatsService(dbContext);
             attachmentsService = new AttachmentsService(dbContext);
 
-            serverEvents = new ServerEvents(Clients);
+            serverEvents = new Contract.ServerEvents(Clients);
         }
         
         public async Task UpdateChat()

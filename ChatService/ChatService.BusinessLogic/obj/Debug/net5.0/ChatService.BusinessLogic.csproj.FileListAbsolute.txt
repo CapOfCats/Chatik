@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\Norbit\chat\ChatServese.Contract\Chatik\ChatService\ChatService.BusinessLogic\bin\Debug\net5.0\ChatService.Contract.dll
+C:\Users\user\Desktop\Norbit\chat\ChatServese.Contract\Chatik\ChatService\ChatService.BusinessLogic\obj\Debug\net5.0\ChatService.BusinessLogic.csprojAssemblyReference.cache
+C:\Users\user\Desktop\Norbit\chat\ChatServese.Contract\Chatik\ChatService\ChatService.BusinessLogic\obj\Debug\net5.0\ChatService.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\Norbit\chat\ChatServese.Contract\Chatik\ChatService\ChatService.BusinessLogic\obj\Debug\net5.0\ChatService.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Norbit\chat\ChatServese.Contract\Chatik\ChatService\ChatService.BusinessLogic\obj\Debug\net5.0\ChatService.BusinessLogic.AssemblyInfo.cs

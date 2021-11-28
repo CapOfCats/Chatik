@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xhNE1A2JkODBbbkcLmA/Ti6pViBtLONVlSLFnb///JbBuJUNY/N1GmPvaV160+4/TkPooSzwS0/z6s5VAai/hg==",
+  "dgSpecHash": "/QwPLZFof9FfPrDf1y4vj77FPeS1UUX8JvGjIom3imNowDqvcSA6oDbAIPOQRRTQPHxxkjL919RNYEX46jTMeA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danil\\Desktop\\c#\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\Norbit\\chat\\ChatServese.Contract\\Chatik\\ChatService\\ChatService.Tests\\ChatService.Tests.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

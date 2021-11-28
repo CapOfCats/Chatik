@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine
+WORKDIR /src
+COPY *.sln .
+COPY *.csproj .
+RUN dotnet restore
+COPY ChatService.Contract/ .
+COPY ChatService.Tests/ .
+COPY ClientApp/ .
+COPY Migrations/ .
+RUN dotnet publish -c Release -0 out
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS release
+WORKDIR /app
+COPY --from=build /src/out ./
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "Chatik.dll"]
